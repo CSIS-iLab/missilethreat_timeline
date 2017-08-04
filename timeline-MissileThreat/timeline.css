@@ -63,8 +63,12 @@
 #saudi-arabias-patriot-batteries-intercept-4-ballistic-missilest-marker .tl-icon-image:after,
 #saudi-air-defense-forces-intercept-missile-in-jizan-marker .tl-icon-image:after,
 #arab-coalition-intercepts-two-ballistic-missiles-marker .tl-icon-image:after,
-#yemen-rebel-missile-shot-down-200km-from-saudi-capital-marker .tl-icon-image:after
-
+#yemen-rebel-missile-shot-down-200km-from-saudi-capital-marker .tl-icon-image:after,
+#saudi-arabia-intercepts-houthi-missile-near-mecca-marker .tl-icon-image:after,
+#arab-coalition-repels-four-houthi-missiles-targeting-western-yemen-marker .tl-icon-image:after,
+#ballistic-missile-intercepted-65-km-from-mecca-marker .tl-icon-image:after,
+#coalition-intercepts-tochka-missile-marker .tl-icon-image:after,
+#arab-coalition-intercepts-missile-by-marib-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
@@ -85,7 +89,12 @@
 #senior-yemeni-general-killed-in-houthi-missile-attack-marker .tl-icon-image:after,
 #houthi-rebels-report-strike-on-saudis-king-salaman-air-base-with-ballistic-missile-marker .tl-icon-image:after,
 #houthi-forces-attack-uae-ship-with-cruise-missile-marker .tl-icon-image:after,
-#houthis-launch-missile-at-saudi-oil-refinery-marker .tl-icon-image:after
+#houthis-launch-missile-at-saudi-oil-refinery-marker .tl-icon-image:after,
+#houthi-forces-target-king-khalid-air-base-with-scud-marker .tl-icon-image:after,
+#houthi-missile-strikes-mayun-island-bab-al-mandeb-strait-marker .tl-icon-image:after,
+#houthi-missile-falls-in-desert-by-khamis-mushait-marker .tl-icon-image:after,
+#houthi-missile-attack-kills-dozens-in-yemen-mosque-marker .tl-icon-image:after,
+#houthi-ballistic-missile-lands-in-najran-desert-marker .tl-icon-image:after
 {
  content: url(STRIKE.png);
 }
