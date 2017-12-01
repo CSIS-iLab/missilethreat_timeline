@@ -68,7 +68,8 @@
 #arab-coalition-repels-four-houthi-missiles-targeting-western-yemen-marker .tl-icon-image:after,
 #ballistic-missile-intercepted-65-km-from-mecca-marker .tl-icon-image:after,
 #coalition-intercepts-tochka-missile-marker .tl-icon-image:after,
-#arab-coalition-intercepts-missile-by-marib-marker .tl-icon-image:after
+#arab-coalition-intercepts-missile-by-marib-marker .tl-icon-image:after,
+#saudi-arabia-intercepts-missile-fired-toward-khamis-mushait-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
