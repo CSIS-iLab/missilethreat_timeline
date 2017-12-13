@@ -71,7 +71,8 @@
 #arab-coalition-intercepts-missile-by-marib-marker .tl-icon-image:after,
 #saudi-arabias-patriot-intercepts-houthi-missile-targeting-marib-marker .tl-icon-image:after,
 #saudi-air-defense-forces-intercept-missile-targeting-khamis-mushait-marker .tl-icon-image:after,
-#saudi-patriot-intercepts-ballistic-missile-targeting-riyadh-airport-marker .tl-icon-image:after
+#saudi-patriot-intercepts-ballistic-missile-targeting-riyadh-airport-marker .tl-icon-image:after,
+#saudi-arabia-intercepts-missile-fired-toward-khamis-mushait-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
