@@ -72,7 +72,9 @@
 #saudi-arabias-patriot-intercepts-houthi-missile-targeting-marib-marker .tl-icon-image:after,
 #saudi-air-defense-forces-intercept-missile-targeting-khamis-mushait-marker .tl-icon-image:after,
 #saudi-arabia-intercepts-missile-fired-toward-khamis-mushait-marker .tl-icon-image:after,
-#saudi-arabia-reportedly-intercepts-missile-targeting-riyadh-marker .tl-icon-image:after
+#saudi-arabia-reportedly-intercepts-missile-targeting-riyadh-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-najran-military-camp-state-media-marker .tl-icon-image:after,
+#saudi-arabia-intercepts-houthi-missile-targeting-najran-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
@@ -99,7 +101,8 @@
 #houthi-missile-falls-in-desert-by-khamis-mushait-marker .tl-icon-image:after,
 #houthi-missile-attack-kills-dozens-in-yemen-mosque-marker .tl-icon-image:after,
 #houthi-ballistic-missile-lands-in-najran-desert-marker .tl-icon-image:after,
-#houthi-forces-strike-najran-with-qaher-missile-marker .tl-icon-image:after
+#houthi-forces-strike-najran-with-qaher-missile-marker .tl-icon-image:after,
+#houthi-missile-falls-near-al-ruweik-military-camp-in-eastern-marib-marker .tl-icon-image:after
 {
  content: url(STRIKE.png);
 }
