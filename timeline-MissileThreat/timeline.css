@@ -74,7 +74,9 @@
 #saudi-arabia-intercepts-missile-fired-toward-khamis-mushait-marker .tl-icon-image:after,
 #saudi-arabia-reportedly-intercepts-missile-targeting-riyadh-marker .tl-icon-image:after,
 #ksa-intercepts-missile-targeting-najran-military-camp-state-media-marker .tl-icon-image:after,
-#saudi-arabia-intercepts-houthi-missile-targeting-najran-marker .tl-icon-image:after
+#saudi-arabia-intercepts-houthi-missile-targeting-najran-marker .tl-icon-image:after,
+#saudi-air-defense-forces-intercept-missile-targeting-najran-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
