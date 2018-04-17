@@ -76,7 +76,18 @@
 #ksa-intercepts-missile-targeting-najran-military-camp-state-media-marker .tl-icon-image:after,
 #saudi-arabia-intercepts-houthi-missile-targeting-najran-marker .tl-icon-image:after,
 #saudi-air-defense-forces-intercept-missile-targeting-najran-marker .tl-icon-image:after,
-#ksa-intercepts-missile-targeting-jizan-marker .tl-icon-image:after
+#ksa-intercepts-missile-targeting-jizan-marker .tl-icon-image:after,
+#arab-coalition-intercepts-missile-targeting-khamis-mushait-marker .tl-icon-image:after,
+#uae-intercepts-missile-targeting-al-mokha-marker .tl-icon-image:after,
+#arab-coalition-intercepts-missiles-targeting-yemeni-troops-in-marib-marker .tl-icon-image:after,
+#arab-coalition-intercepts-missile-targeting-al-mokha-marker .tl-icon-image:after,
+#report-saudi-arabia-intercepts-ballistic-missile-in-jizan-marker .tl-icon-image:after,
+#report-saudi-arabia-intercepts-ballistic-missile-in-najran-marker .tl-icon-image:after,
+#arab-coalition-intercepts-missile-targeting-jizan-marker .tl-icon-image:after,
+#arab-coalition-intercepts-missile-targeting-najran-marker .tl-icon-image:after,
+#ksa-intercepts-missiles-targeting-riyadh-jizan-najran-marker .tl-icon-image:after,
+#houthi-missile-targets-jizan-marker .tl-icon-image:after,
+#saudi-air-defense-forces-intercept-missile-targeting-jizan-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
@@ -104,7 +115,9 @@
 #houthi-missile-attack-kills-dozens-in-yemen-mosque-marker .tl-icon-image:after,
 #houthi-ballistic-missile-lands-in-najran-desert-marker .tl-icon-image:after,
 #houthi-forces-strike-najran-with-qaher-missile-marker .tl-icon-image:after,
-#houthi-missile-falls-near-al-ruweik-military-camp-in-eastern-marib-marker .tl-icon-image:after
+#houthi-missile-falls-near-al-ruweik-military-camp-in-eastern-marib-marker .tl-icon-image:after,
+#houthi-missile-strikes-saudi-oil-tanker-in-red-sea-marker .tl-icon-image:after,
+#houthi-missile-targets-saudi-military-base-in-asir-2-marker .tl-icon-image:after
 {
  content: url(STRIKE.png);
 }
