@@ -87,7 +87,16 @@
 #arab-coalition-intercepts-missile-targeting-najran-marker .tl-icon-image:after,
 #ksa-intercepts-missiles-targeting-riyadh-jizan-najran-marker .tl-icon-image:after,
 #houthi-missile-targets-jizan-marker .tl-icon-image:after,
-#saudi-air-defense-forces-intercept-missile-targeting-jizan-marker .tl-icon-image:after
+#saudi-air-defense-forces-intercept-missile-targeting-jizan-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-2-marker .tl-icon-image:after,
+#ksa-intercepts-missiles-targeting-al-mokha-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-najran-marker .tl-icon-image:after,
+#saudi-air-defences-intercept-missiles-targeting-jizan-marker .tl-icon-image:after,
+#ksa-intercepts-missiles-targeting-najran-marker .tl-icon-image:after,
+#saudi-air-defences-intercept-missiles-targeting-najran-marker .tl-icon-image:after,
+#saudi-air-defences-intercept-missile-salvo-targeting-jizan-marker .tl-icon-image:after,
+#ksa-intercepts-missiles-targeting-najran-2-marker .tl-icon-image:after,
+#saudi-arabias-patriot-batteries-intercept-4-ballistic-missiles-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
