@@ -96,7 +96,23 @@
 #saudi-air-defences-intercept-missiles-targeting-najran-marker .tl-icon-image:after,
 #saudi-air-defences-intercept-missile-salvo-targeting-jizan-marker .tl-icon-image:after,
 #ksa-intercepts-missiles-targeting-najran-2-marker .tl-icon-image:after,
-#saudi-arabias-patriot-batteries-intercept-4-ballistic-missiles-marker .tl-icon-image:after
+#saudi-arabias-patriot-batteries-intercept-4-ballistic-missiles-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-4-marker .tl-icon-image:after,
+#saudis-intercept-missiles-targeting-riyadh-jizan-najran-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-5-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-6-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-7-marker .tl-icon-image:after,
+#saudis-intercept-missile-targeting-najran-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-yanbu-marker .tl-icon-image:after,
+#ksa-forces-intercept-missile-targeting-jizan-marker .tl-icon-image:after,
+#houthi-missile-targets-jizan-2-marker .tl-icon-image:after,
+#ksa-forces-intercept-missile-targeting-khamis-mushait-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-saudi-aramco-facility-in-abha-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-riyadh-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-8-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-jizan-3-marker .tl-icon-image:after,
+#ksa-intercepts-missile-targeting-najran-2-marker .tl-icon-image:after
+
 {
     content: url(intercept.png);
 }
@@ -127,6 +143,11 @@
 #houthi-missile-falls-near-al-ruweik-military-camp-in-eastern-marib-marker .tl-icon-image:after,
 #houthi-missile-strikes-saudi-oil-tanker-in-red-sea-marker .tl-icon-image:after,
 #houthi-missile-targets-saudi-military-base-in-asir-2-marker .tl-icon-image:after
+#houthis-fire-missile-at-jizan-marker .tl-icon-image:after,
+#houthi-missile-targeting-jizan-kills-3-marker .tl-icon-image:after,
+#houthi-missile-reportedly-hits-uae-vessel-marker .tl-icon-image:after,
+#houthis-fire-missile-at-jizan-2-marker .tl-icon-image:after
+
 {
  content: url(STRIKE.png);
 }
