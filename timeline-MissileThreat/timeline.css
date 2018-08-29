@@ -117,7 +117,14 @@
 #uae-forces-air-defenses-intercept-missile-targeting-al-mokha-marker .tl-icon-image:after,
 #saudi-air-defenses-intercept-missile-targeting-najran-2-marker .tl-icon-image:after,
 #ksa-intercepts-missile-targeting-jizan-9-marker .tl-icon-image:after
-
+#saudi-air-defenses-intercept-missile-targeting-najran-3-marker .tl-icon-image:after,
+#houhti-launched-missile-targeting-jizan-intercepted-marker .tl-icon-image:after,
+#houthi-badr-1-srbm-fired-towards-najran-intercepted-marker .tl-icon-image:after,
+#ksa-air-defense-forces-report-houthi-missile-targeting-jizan-intercepted-without-casualties-marker .tl-icon-image:after,
+#houthi-missile-targeting-jizan-intercepted-by-ksa-forces-marker .tl-icon-image:after,
+#ksa-forces-intercept-houthi-launched-zelzal-1-missile-marker .tl-icon-image:after,
+#zelzal-1-intercepted-by-ksa-air-defenses-marker .tl-icon-image:after,
+#houthi-missile-targeting-najran-intercepted-marker .tl-icon-image:after,
 {
     content: url(intercept.png);
 }
@@ -152,6 +159,7 @@
 #houthi-missile-targeting-jizan-kills-3-marker .tl-icon-image:after,
 #houthi-missile-reportedly-hits-uae-vessel-marker .tl-icon-image:after,
 #houthis-fire-missile-at-jizan-2-marker .tl-icon-image:after
+
 
 {
  content: url(STRIKE.png);
