@@ -124,7 +124,7 @@
 #houthi-missile-targeting-jizan-intercepted-by-ksa-forces-marker .tl-icon-image:after,
 #ksa-forces-intercept-houthi-launched-zelzal-1-missile-marker .tl-icon-image:after,
 #zelzal-1-intercepted-by-ksa-air-defenses-marker .tl-icon-image:after,
-#houthi-missile-targeting-najran-intercepted-marker .tl-icon-image:after,
+#houthi-missile-targeting-najran-intercepted-marker .tl-icon-image:after
 {
     content: url(intercept.png);
 }
