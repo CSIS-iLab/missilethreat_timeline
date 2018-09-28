@@ -8,23 +8,17 @@
 */
 /*!
 	Timeline JS 3
-
 	Designed and built by Zach Wise for the Northwestern University Knight Lab
-
 	This Source Code Form is subject to the terms of the Mozilla Public
 	License, v. 2.0. If a copy of the MPL was not distributed with this
 	file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 */
 /*!
 	Timeline JS 3
-
 	Designed and built by Zach Wise for the Northwestern University Knight Lab
-
 	This Source Code Form is subject to the terms of the Mozilla Public
 	License, v. 2.0. If a copy of the MPL was not distributed with this
 	file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 */
 
 #saudi-troops-intercept-scud-fired-from-yemen-marker .tl-icon-image:after,
@@ -130,7 +124,13 @@
 #ballistic-missile-targeting-jizan-intercepted-2-marker .tl-icon-image:after,
 #at-least-two-zelzal-1s-intercepted-by-ksa-air-defenses-marker .tl-icon-image:after,
 #debris-from-an-intercepted-badr-1-srbm-injured-37-people-in-najran-marker .tl-icon-image:after,
-#houthi-launched-badr-1-missile-targeting-jizan-intercepted-marker .tl-icon-image:after
+#houthi-launched-badr-1-missile-targeting-jizan-intercepted-marker .tl-icon-image:after,
+#badr-1-targeting-najran-intercepted-marker:after,
+#ballistic-missile-targeting-jizan-intercepted-3-marker:after,
+#badr-1-targeting-jizan-intercepted-marker:after,
+#badr-1-targeting-jizan-intercepted-2-marker:after,
+#badr-1-targeting-jizan-intercepted-3-marker:after,
+#badr-1-targeting-jizan-intercepted-4-marker:after
 
 
 {
@@ -167,8 +167,6 @@
 #houthi-missile-targeting-jizan-kills-3-marker .tl-icon-image:after,
 #houthi-missile-reportedly-hits-uae-vessel-marker .tl-icon-image:after,
 #houthis-fire-missile-at-jizan-2-marker .tl-icon-image:after
-
-
 {
  content: url(STRIKE.png);
 }
