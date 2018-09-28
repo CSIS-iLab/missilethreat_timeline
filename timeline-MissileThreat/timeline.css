@@ -130,8 +130,13 @@
 #ballistic-missile-targeting-jizan-intercepted-2-marker .tl-icon-image:after,
 #at-least-two-zelzal-1s-intercepted-by-ksa-air-defenses-marker .tl-icon-image:after,
 #debris-from-an-intercepted-badr-1-srbm-injured-37-people-in-najran-marker .tl-icon-image:after,
-#houthi-launched-badr-1-missile-targeting-jizan-intercepted-marker .tl-icon-image:after
-
+#houthi-launched-badr-1-missile-targeting-jizan-intercepted-marker .tl-icon-image:after,
+#badr-1-targeting-najran-intercepted-marker:after,
+#ballistic-missile-targeting-jizan-intercepted-3-marker:after,
+#badr-1-targeting-jizan-intercepted-marker:after,
+#badr-1-targeting-jizan-intercepted-2-marker:after,
+#badr-1-targeting-jizan-intercepted-3-marker:after,
+#badr-1-targeting-jizan-intercepted-4-marker:after
 
 {
     content: url(intercept.png);
