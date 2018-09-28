@@ -166,9 +166,13 @@
 #houthis-fire-missile-at-jizan-marker .tl-icon-image:after,
 #houthi-missile-targeting-jizan-kills-3-marker .tl-icon-image:after,
 #houthi-missile-reportedly-hits-uae-vessel-marker .tl-icon-image:after,
-#houthis-fire-missile-at-jizan-2-marker .tl-icon-image:after
-
-
+#houthis-fire-missile-at-jizan-2-marker .tl-icon-image:after,
+#badr-1-targeting-najran-intercepted-marker:after,
+#ballistic-missile-targeting-jizan-intercepted-3-marker:after,
+#badr-1-targeting-jizan-intercepted-marker:after,
+#badr-1-targeting-jizan-intercepted-2-marker:after,
+#badr-1-targeting-jizan-intercepted-3-marker:after,
+#badr-1-targeting-jizan-intercepted-4-marker:after
 {
  content: url(STRIKE.png);
 }
