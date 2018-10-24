@@ -136,7 +136,8 @@
 #badr-1-targeting-jizan-intercepted-marker .tl-icon-image:after,
 #badr-1-targeting-jizan-intercepted-2-marker .tl-icon-image:after,
 #badr-1-targeting-jizan-intercepted-3-marker .tl-icon-image:after,
-#badr-1-targeting-jizan-intercepted-4-marker .tl-icon-image:after
+#badr-1-targeting-jizan-intercepted-4-marker .tl-icon-image:after,
+#ballistic-missile-targeting-najran-intercepted-marker .tl-icon-image:after
 
 {
     content: url(intercept.png);
