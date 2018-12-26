@@ -1,3 +1,5 @@
+"use strict";
+
 var additionalOptions = {
   start_at_end: "false",
   start_at_slide: "4",
@@ -5,16 +7,18 @@ var additionalOptions = {
   initial_zoom: "0"
 };
 
-const spreadsheetID = "1AKM59m3iaOSSQgVsIoDcSWxjcpX781JIuBwB9YdDgFs";
+var spreadsheetID = "1AKM59m3iaOSSQgVsIoDcSWxjcpX781JIuBwB9YdDgFs";
 
-const timelineURL =
+var timelineURL =
   "https://spreadsheets.google.com/feeds/list/" +
   spreadsheetID +
   "/1/public/values?alt=json";
 
 fetch(timelineURL)
-  .then(resp => resp.json())
-  .then(json => {
+  .then(function(resp) {
+    return resp.json();
+  })
+  .then(function(json) {
     var timeline_json = parseJson(json.feed.entry);
     window.timeline = new TL.Timeline(
       "timeline-embed",
@@ -24,25 +28,25 @@ fetch(timelineURL)
   });
 
 function parseJson(json) {
-  let data = json.map(r => {
-    let row = r;
-    let rowData = {};
+  var data = json.map(function(r) {
+    var row = r;
+    var rowData = {};
 
-    Object.keys(row).forEach((c, i) => {
-      let column = c;
+    Object.keys(row).forEach(function(c, i) {
+      var column = c;
       if (column.indexOf("gsx$") > -1) {
-        let columnName = column.replace("gsx$", "");
+        var columnName = column.replace("gsx$", "");
         rowData[columnName] = row[column]["$t"];
       }
     });
 
-    let interceptColored =
+    var interceptColored =
       rowData.text.toLowerCase().indexOf("yellowgreen") > -1;
-    let interceptTexted = rowData.text.toLowerCase().indexOf("intercept") > -1;
-    let strikeColored = rowData.text.toLowerCase().indexOf("indianred") > -1;
-    let strikeTexted = rowData.text.toLowerCase().indexOf("strike") > -1;
+    var interceptTexted = rowData.text.toLowerCase().indexOf("intercept") > -1;
+    var strikeColored = rowData.text.toLowerCase().indexOf("indianred") > -1;
+    var strikeTexted = rowData.text.toLowerCase().indexOf("strike") > -1;
 
-    let eventData = {
+    var eventData = {
       start_date: {
         day: rowData.day,
         format: "full",
@@ -59,13 +63,13 @@ function parseJson(json) {
         // credit: rowData.media_2,
         url: rowData.media
       },
-      unique_id: `${
-        strikeColored && strikeTexted
-          ? `strike`
+      unique_id:
+        "" +
+        (strikeColored && strikeTexted
+          ? "strike"
           : interceptColored && interceptTexted
-            ? `intercept`
-            : `none`
-      }`
+            ? "intercept"
+            : "none")
     };
 
     return eventData;
