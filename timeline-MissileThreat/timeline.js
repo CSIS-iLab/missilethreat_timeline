@@ -30,16 +30,17 @@ function parseJson(json) {
 
     Object.keys(row).forEach((c, i) => {
       let column = c;
-      if (column.includes("gsx$")) {
+      if (column.indexOf("gsx$") > -1) {
         let columnName = column.replace("gsx$", "");
         rowData[columnName] = row[column]["$t"];
       }
     });
 
-    let interceptColored = rowData.text.toLowerCase().includes("yellowgreen");
-    let interceptTexted = rowData.text.toLowerCase().includes("intercept");
-    let strikeColored = rowData.text.toLowerCase().includes("indianred");
-    let strikeTexted = rowData.text.toLowerCase().includes("strike");
+    let interceptColored =
+      rowData.text.toLowerCase().indexOf("yellowgreen") > -1;
+    let interceptTexted = rowData.text.toLowerCase().indexOf("intercept") > -1;
+    let strikeColored = rowData.text.toLowerCase().indexOf("indianred") > -1;
+    let strikeTexted = rowData.text.toLowerCase().indexOf("strike") > -1;
 
     let eventData = {
       start_date: {
