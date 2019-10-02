@@ -41,7 +41,7 @@ Highcharts.chart('hcContainer', {
   plotOptions:
   {
     column: {
-      stacking: null, // Normal bar graph
+      stacking: normal, // Normal bar graph
       // stacking: "normal", // Stacked bar graph
       dataLabels: {
         enabled: false,
