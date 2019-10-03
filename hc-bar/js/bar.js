@@ -1,3 +1,19 @@
+// series is an array of objects
+// name - Intercept, Strike, Other
+// data is an array of objects
+// name - monthYear
+// Y - # of event in m/y (insert 0 if none)
+// drilldown - monthYear-Strike, Intercept, Other
+
+// drilldown is an object
+// allowPointDrilldown - false (drilldown shows events for all categories in that month/year)
+// series is an array of objects
+// name - Strike, Intercept, Other
+// id - monthYear-Strike, Intercept, Other
+// data is an array of arrays
+// [day, # of events]
+
+
 Highcharts.chart('hcContainer', {
   // Load Data in from Google Sheets
   data: {
