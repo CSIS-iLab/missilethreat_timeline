@@ -1,24 +1,59 @@
 // series is an array of objects
-// name - Intercept, Strike, Other
-// data is an array of objects
-// name - monthYear
-// Y - # of event in m/y (insert 0 if none)
-// drilldown - monthYear-Strike, Intercept, Other
+//    name - eventType (Intercept, Strike, Other)
+//    data is an array of objects
+//      name - monthYear
+//      Y - # of event in m/y (insert 0 if none)
+//      drilldown - monthYear-eventType+Headline+Text
 
 // drilldown is an object
-// allowPointDrilldown - false (drilldown shows events for all categories in that month/year)
-// series is an array of objects
-// name - Strike, Intercept, Other
-// id - monthYear-Strike, Intercept, Other
-// data is an array of arrays
-// [day, # of events]
+//    allowPointDrilldown - false (drilldown shows events for all categories in that month/year)
+//    series is an array of objects
+//      name - eventType+Headline+Text (Strike, Intercept, Other)
+//      id - monthYear-eventType+Headline+Text
+//      data is an array of arrays
+//        [day, # of events]
+
+// Skip first row
+// extract event type
+// Combine month+&+year
+// Combine eventType+&+Headline+&+Text
+// Combine month+&+year+&+eventType+Headline+Text
+// If cell 11 contains YellowGreen, push to Intercept; else if call 11 contains IndianRed, push to strike; else push to other
+//    {"name": eventType, "data": eventArray[eventType]}
+//    name: monthYear; drilldown: monthYear+&+series name; y: +=1
+// Push Intercept, Strike and Other objects to series array
+// If cell 11 contains YellowGreen, push to Intercept; else if call 11 contains IndianRed, push to strike; else push to other
+//    name: Strike, Intercept, Other; id: monthYear+&+series name;
+
+var dataRoot = {
+  'series': [],
+  'drilldown': []
+}
 
 
 Highcharts.chart('hcContainer', {
   // Load Data in from Google Sheets
   data: {
     googleSpreadsheetKey: '1AKM59m3iaOSSQgVsIoDcSWxjcpX781JIuBwB9YdDgFs',
-    googleSpreadsheetWorksheet: 2
+    googleSpreadsheetWorksheet: 2,
+    switchRowsAndColumns: true,
+    parsed: function parsed(columns) {
+      // set default values
+      var drilldown = ""
+      var dataArray = { "Intercept": [], "Strike": [], "Other": [] }
+      var drilldownArray = []
+      var eventType = ""
+      var totalItems = columns.length
+
+
+
+
+    }
+
+
+
+
+
   },
   // General Chart Options
   chart: {
