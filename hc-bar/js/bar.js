@@ -2,14 +2,14 @@
 //    name - eventType (Intercept, Strike, Other)
 //    data is an array of objects
 //      name - monthYear
-//      Y - # of event in m/y (insert 0 if none)
-//      drilldown - monthYear-eventType+Headline+Text
+//      Y - # of event in m/y
+//      drilldown - monthYear-eventType
 
 // drilldown is an object
 //    allowPointDrilldown - false (drilldown shows events for all categories in that month/year)
 //    series is an array of objects
 //      name - eventType+Headline+Text (Strike, Intercept, Other)
-//      id - monthYear-eventType+Headline+Text
+//      id - monthYear-eventType
 //      data is an array of arrays
 //        [day, # of events]
 
@@ -38,7 +38,7 @@ Highcharts.chart('hcContainer', {
     parsed: function parsed(columns) {
       // set default values
       var drilldown = ""
-      var dataArray = { "Intercept": [], "Strike": [], "Other": [] }
+      var dataArray = { "intercept": {}, "strike": {}, "other": {} }
       var drilldownArray = []
       var event = ""
       var totalItems = columns.length
@@ -48,8 +48,6 @@ Highcharts.chart('hcContainer', {
         if (index == 0) {
           return
         }
-        // Get the drilldown value for this row
-        var drilldownRow = row[1] + '*' + row[0]
         // Get event value for this row
         var interceptColored = row[10].toLowerCase().indexOf("yellowgreen") > -1
         var strikeColored = row[10].toLowerCase().indexOf("indianred") > -1;
@@ -60,31 +58,50 @@ Highcharts.chart('hcContainer', {
         } else {
           eventRow = 'other'
         }
-        // If the eventRow value is different from the event value, update the event value
-        if (event != eventRow) {
-          // Update event
-          event = eventRow
-
-          // Push data to dataRoot array
-          dataRoot.series.push({ "data": dataArray[event], "name": event })
+        // Get the drilldown value for this row
+        var drilldownRow = row[1] + '*' + row[0] + '*' + eventRow
+        // Populate dataArray
+        // dataArray[eventRow].push({
+        //   "y": + 1,
+        //   "drilldown": drilldownRow,
+        //   "name": drilldownRow
+        // })
+        if (!dataArray[eventRow][drilldownRow]) {
+          dataArray[eventRow][drilldownRow] = {
+            "y": 0,
+            "drilldown": drilldownRow,
+            "name": drilldownRow
+          }
         }
+        dataArray[eventRow][drilldownRow].y += 1
+
 
         if (drilldown != drilldownRow) {
           if (index == 1) {
             // Update drilldown value
             drilldown = drilldownRow
-          } else {
+          }
+          else {
+            // Push data to dataRoot drilldown
             dataRoot.drilldown.push({
               "allowPointDrilldown": false,
               name: eventRow.toUpperCase() + " " + row[9] + " " + row[10],
-              id: drilldownRow + '*' + eventRow + '*' + row[9] + '*' + row[10],
+              id: drilldownRow + '*' + eventRow,
               data: drilldownArray
             })
-            console.log(dataRoot.drilldown)
           }
-        }
-      })
+          // Empty drilldown array
+          drilldownArray = []
 
+          // Update drilldown value
+          drilldown = drilldownRow
+          drilldownArray.push([row[2], 1])
+        }
+
+
+      })
+      dataRoot.series = dataArray
+      console.log(dataRoot)
 
     }
 
