@@ -41,8 +41,9 @@ Highcharts.chart('hcContainer', {
     parsed: function parsed(columns) {
       // set default values
       var drilldown = ""
-      var dataArray = { "intercept": {}, "strike": {}, "other": {} }
-      drilldownSeries = []
+      var dataObject = { "intercept": {}, "strike": {}, "other": {} }
+      var drilldownSeries = []
+      var dataArray = []
       var drilldownArray = []
       var event = ""
       var totalItems = columns.length
@@ -66,30 +67,36 @@ Highcharts.chart('hcContainer', {
         var drilldownRow = row[1] + '*' + row[0] + '*' + eventRow
         var drilldownPointName = eventRow.toUpperCase() + " " + row[9] + " " + row[10]
         // If the drilldown value for this row doesn't exist in this event's object, create it
-        if (!dataArray[eventRow][drilldownRow]) {
-          dataArray[eventRow][drilldownRow] = {
+        if (!dataObject[eventRow][drilldownRow]) {
+          dataObject[eventRow][drilldownRow] = {
             "y": 0,
             "drilldown": drilldownRow,
             "name": drilldownRow
           }
         }
         // Increase value of y for every instance of the drilldown within the event object
-        dataArray[eventRow][drilldownRow].y += 1
+        dataObject[eventRow][drilldownRow].y += 1
 
-        if (!drilldownSeries.id) {
-          drilldownSeries.push({
-            name: drilldownPointName,
-            id: drilldownRow,
-            data: [row[2], 1]
-          })
-        }
+        // populate drilldown series - name will be unique for every data point
+        drilldownSeries.push({
+          name: drilldownPointName,
+          id: drilldownRow,
+          data: [row[2], 1]
+        })
 
 
+        // console.log(dataArray, eventRow)
       })
-      dataRoot.series = dataArray
+      var seriesNames = Object.keys(dataObject)
+      dataArray = Object.values(dataObject)
+      var series = []
+      for (var i = 0; i < dataArray.length; i++) {
+        var dataPoints = Object.values(dataArray[i])
+        series.push({ name: seriesNames[i], data: dataPoints })
+      }
+      dataRoot.series = series
       dataRoot.drilldown.series = drilldownSeries
       console.log(dataRoot)
-
     }
 
 
