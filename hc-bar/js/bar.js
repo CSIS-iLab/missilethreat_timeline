@@ -25,7 +25,10 @@
 
 var dataRoot = {
   'series': [],
-  'drilldown': []
+  'drilldown': {
+    allowPointDrilldown: false,
+    'series': []
+  }
 }
 
 
@@ -39,6 +42,7 @@ Highcharts.chart('hcContainer', {
       // set default values
       var drilldown = ""
       var dataArray = { "intercept": {}, "strike": {}, "other": {} }
+      drilldownSeries = []
       var drilldownArray = []
       var event = ""
       var totalItems = columns.length
@@ -58,14 +62,10 @@ Highcharts.chart('hcContainer', {
         } else {
           eventRow = 'other'
         }
-        // Get the drilldown value for this row
+        // Get the drilldown values for this row
         var drilldownRow = row[1] + '*' + row[0] + '*' + eventRow
-        // Populate dataArray
-        // dataArray[eventRow].push({
-        //   "y": + 1,
-        //   "drilldown": drilldownRow,
-        //   "name": drilldownRow
-        // })
+        var drilldownPointName = eventRow.toUpperCase() + " " + row[9] + " " + row[10]
+        // If the drilldown value for this row doesn't exist in this event's object, create it
         if (!dataArray[eventRow][drilldownRow]) {
           dataArray[eventRow][drilldownRow] = {
             "y": 0,
@@ -73,34 +73,21 @@ Highcharts.chart('hcContainer', {
             "name": drilldownRow
           }
         }
+        // Increase value of y for every instance of the drilldown within the event object
         dataArray[eventRow][drilldownRow].y += 1
 
-
-        if (drilldown != drilldownRow) {
-          if (index == 1) {
-            // Update drilldown value
-            drilldown = drilldownRow
-          }
-          else {
-            // Push data to dataRoot drilldown
-            dataRoot.drilldown.push({
-              "allowPointDrilldown": false,
-              name: eventRow.toUpperCase() + " " + row[9] + " " + row[10],
-              id: drilldownRow + '*' + eventRow,
-              data: drilldownArray
-            })
-          }
-          // Empty drilldown array
-          drilldownArray = []
-
-          // Update drilldown value
-          drilldown = drilldownRow
-          drilldownArray.push([row[2], 1])
+        if (!drilldownSeries.id) {
+          drilldownSeries.push({
+            name: drilldownPointName,
+            id: drilldownRow,
+            data: [row[2], 1]
+          })
         }
 
 
       })
       dataRoot.series = dataArray
+      dataRoot.drilldown.series = drilldownSeries
       console.log(dataRoot)
 
     }
