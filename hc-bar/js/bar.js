@@ -180,8 +180,17 @@ function renderChart(series, drilldown) {
     tooltip: {
       formatter: function () {
         var dateObj = new Date(this.x)
-        date = dateObj.toDateString()
-        return date + ' - ' + this.point.toolHeader + '<br />' + this.point.toolText
+        var date = dateObj.toDateString()
+        var dateArray = date.split(" ")
+        var monthYear = dateArray[1] + " " + dateArray[3]
+        if (this.point.drilldown) {
+          var categorySplit = this.point.drilldown.split("*")
+          var category = categorySplit[2].charAt(0).toUpperCase() + categorySplit[2].slice(1)
+          return monthYear + '<br />' + category + ': ' + this.y
+        }
+        else {
+          return date + ' - ' + this.point.toolHeader + '<br />' + this.point.toolText
+        }
       }
     }
   })
