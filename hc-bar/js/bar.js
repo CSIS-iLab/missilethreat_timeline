@@ -57,6 +57,8 @@ Highcharts.data({
       } else {
         eventRow = 'other'
       }
+      var eventText = row[10].substr(0, row[10].indexOf('<a '))
+      console.log(eventText)
       // Get date as year month 01 for this row
       var seriesDate = new Date(row[0], row[1] - 1, '01').getTime()
 
@@ -85,11 +87,12 @@ Highcharts.data({
           "data": []
         }
       }
+      // Populate drilldown data
       drilldownObject[drilldownRow].data.push({
         "x": drilldownDate,
         "y": 1,
         "toolHeader": row[9],
-        "toolText": row[10]
+        "toolText": eventText
       })
     })
     // Correct formatting
@@ -146,7 +149,11 @@ function renderChart(series, drilldown) {
       },
       align: 'center',
       verticalAlign: 'bottom',
-      layout: 'horizontal'
+      layout: 'horizontal',
+      labelFormatter: function () {
+        var category = this.name.charAt(0).toUpperCase() + this.name.slice(1)
+        return category
+      }
     },
     // X axis
     xAxis: {
