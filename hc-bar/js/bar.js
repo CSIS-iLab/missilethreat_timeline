@@ -144,6 +144,9 @@ function renderChart(series, drilldown) {
       events: {
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
+        },
+        drillup: function (e) {
+          this.yAxis[0].setTitle({ text: "Monthly Activity" })
         }
       }
     },
@@ -191,17 +194,15 @@ function renderChart(series, drilldown) {
     }],
     // Y Axis drilled up
     yAxis: [{
+      // Set default title
       title: {
         text: "Monthly Activity"
       },
     },
     // Y axis drilled down
     {
+      // Removes y axis lines
       visible: false,
-      showEmpty: true,
-      title: {
-        enabled: false
-      }
     }],
     // Additional Plot Options
     plotOptions:
