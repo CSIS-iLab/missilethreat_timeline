@@ -57,8 +57,8 @@ Highcharts.data({
       } else {
         eventRow = 'other'
       }
+      // Remove links from the text that will appear in the tooltip
       var eventText = row[10].substr(0, row[10].indexOf('<a '))
-      console.log(eventText)
       // Get date as year month 01 for this row
       var seriesDate = new Date(row[0], row[1] - 1, '01').getTime()
 
@@ -84,7 +84,9 @@ Highcharts.data({
         drilldownObject[drilldownRow] = {
           "name": eventRow,
           "id": drilldownRow,
-          "data": []
+          "data": [],
+          "xAxis": 1,
+          "yAxis": 1
         }
       }
       // Populate drilldown data
@@ -98,13 +100,24 @@ Highcharts.data({
     // Correct formatting
     // Create array of event types
     var seriesNames = Object.keys(dataObject)
+    console.log(seriesNames)
     // Create arrays of the data for each event
     dataArray = Object.values(dataObject)
     for (var i = 0; i < dataArray.length; i++) {
       // Remove extra object level
       var dataPoints = Object.values(dataArray[i])
+      var eventColor = ""
+      if (seriesNames[i] == "intercept") {
+        eventColor = "#9acd32"
+      }
+      else if (seriesNames[i] == "strike") {
+        eventColor = "#954950"
+      }
+      else {
+        eventColor = "#E5E5E5"
+      }
       // Push event name and reformatted data objects to series
-      series.push({ name: seriesNames[i], data: dataPoints })
+      series.push({ name: seriesNames[i], data: dataPoints, xAxis: 0, yAxis: 0, color: eventColor })
     }
     // Remove extra object level
     drilldown = Object.values(drilldownObject)
@@ -127,7 +140,12 @@ function renderChart(series, drilldown) {
   Highcharts.chart('hcContainer', {
     // General Chart Options
     chart: {
-      type: 'column'
+      type: 'column',
+      events: {
+        drilldown: function (e) {
+          this.yAxis[0].setTitle({ text: undefined })
+        }
+      }
     },
     // Chart Title and Subtitle
     title: {
@@ -145,7 +163,7 @@ function renderChart(series, drilldown) {
     // Chart Legend
     legend: {
       title: {
-        text: 'Legend Title<br/><span style="font-size: 12px; color: #808080; font-weight: normal">(Click to hide)</span>'
+        text: '<span style="font-size: 12px; color: #808080; font-weight: normal">(Click to hide)</span>'
       },
       align: 'center',
       verticalAlign: 'bottom',
@@ -155,19 +173,36 @@ function renderChart(series, drilldown) {
         return category
       }
     },
-    // X axis
-    xAxis: {
+    // X axis drilled up
+    xAxis: [{
       type: 'datetime',
-      // labels: {
-      //   format: '{value:%b \ %Y}'
-      // }
+      labels: {
+        format: '{value:%b %Y}'
+      },
+      startOnTick: true,
     },
-    // Y Axis
-    yAxis: {
+    // X axis drilled down
+    {
+      type: 'datetime',
+      labels: {
+        format: '{value:%b/%e/%Y}',
+        rotation: -45
+      },
+    }],
+    // Y Axis drilled up
+    yAxis: [{
       title: {
-        text: "Y Axis Title"
+        text: "Monthly Activity"
       },
     },
+    // Y axis drilled down
+    {
+      visible: false,
+      showEmpty: true,
+      title: {
+        enabled: false
+      }
+    }],
     // Additional Plot Options
     plotOptions:
     {
@@ -181,20 +216,30 @@ function renderChart(series, drilldown) {
     },
     series: series,
     drilldown: {
+      // Setting this to false makes all points in column show on drilldown
       allowPointDrilldown: false,
-      series: drilldown
+      series: drilldown,
     },
     tooltip: {
       formatter: function () {
+        // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x)
+        // Remove time portion of date
         var date = dateObj.toDateString()
+        // Convert date to array
         var dateArray = date.split(" ")
+        // Create variable showing month and year
         var monthYear = dateArray[1] + " " + dateArray[3]
+        // Format drilled up tooltip
         if (this.point.drilldown) {
+          // Convert drilldown name to array
           var categorySplit = this.point.drilldown.split("*")
+          // Isolate and capitalize the event category
           var category = categorySplit[2].charAt(0).toUpperCase() + categorySplit[2].slice(1)
+          // Display Month/Year, Category and y value
           return monthYear + '<br />' + category + ': ' + this.y
         }
+        // Format drilled down tooltip
         else {
           return date + ' - ' + this.point.toolHeader + '<br />' + this.point.toolText
         }
