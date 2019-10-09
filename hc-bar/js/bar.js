@@ -61,6 +61,7 @@ Highcharts.data({
           "name": seriesDate,
           "x": seriesDate,
         }
+        console.log(dataObject)
       }
       // Increase value of y for every instance of the drilldown within the event object
       dataObject[eventRow][drilldownRow].y += 1
@@ -71,7 +72,7 @@ Highcharts.data({
           "name": eventRow,
           "id": drilldownRow,
           "data": [],
-          "xAxis": 1,
+          // "xAxis": 1,
           "yAxis": 1,
           maxPointWidth: 35
         }
@@ -149,10 +150,24 @@ function renderChart(series, drilldown) {
         // On drilldown remove yAxis title
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
+          this.xAxis[0].update({
+            labels: {
+              format: '{value:%b %e, %Y}',
+              rotation: -45
+            },
+            minPadding: 0.1
+          })
         },
         // On drillup set yAxis title
         drillup: function (e) {
           this.yAxis[0].setTitle({ text: "Monthly Activity" })
+          this.xAxis[0].update({
+            labels: {
+              format: '{value:%b %Y}',
+              rotation: 90
+            },
+            tickInterval: 24 * 28 * 3600 * 1000,
+          })
         }
       }
     },
@@ -186,20 +201,20 @@ function renderChart(series, drilldown) {
     // X axis drilled up
     xAxis: [{
       type: 'datetime',
-      labels: {
-        format: '{value:%b %Y}',
-        rotation: 90
-      },
-      tickInterval: 24 * 28 * 3600 * 1000
-    },
-    // X axis drilled down
-    {
-      type: 'datetime',
-      labels: {
-        format: '{value:%b %e, %Y}',
-        rotation: -45
-      },
-      minPadding: 0.1
+      // labels: {
+      //   format: '{value:%b %Y}',
+      //   rotation: 90
+      // },
+      // tickInterval: 24 * 28 * 3600 * 1000,
+      // },
+      // // X axis drilled down
+      // {
+      //   type: 'datetime',
+      //   labels: {
+      //     format: '{value:%b %e, %Y}',
+      //     rotation: -45
+      //   },
+      //   minPadding: 0.1
     }],
     // Y Axis drilled up
     yAxis: [{
