@@ -37,7 +37,7 @@ Highcharts.data({
   parsed: function parsed(columns) {
     // set default values
     var drilldown = ""
-    var dataObject = { "intercept": {}, "strike": {}, "other": {} }
+    var dataObject = { "other": {}, "strike": {}, "intercept": {} }
     var dataArray = []
     var drilldownObject = {}
     var event = ""
@@ -86,7 +86,8 @@ Highcharts.data({
           "id": drilldownRow,
           "data": [],
           "xAxis": 1,
-          "yAxis": 1
+          "yAxis": 1,
+          maxPointWidth: 35
         }
       }
       // Populate drilldown data
@@ -109,12 +110,30 @@ Highcharts.data({
       var eventColor = ""
       if (seriesNames[i] == "intercept") {
         eventColor = "#9acd32"
+        // eventColor = {
+        //   pattern: {
+        //     image: "../intercept.png",
+        //     width: 20,
+        //     height: 20,
+        //     x: 1.5,
+        //     y: 2
+        //   }
+        // }
       }
       else if (seriesNames[i] == "strike") {
         eventColor = "#954950"
+        // eventColor = {
+        //   pattern: {
+        //     image: "../STRIKE.png",
+        //     width: 15,
+        //     height: 15,
+        //     x: 1,
+        //     y: 4
+        //   }
+        // }
       }
       else {
-        eventColor = "#E5E5E5"
+        eventColor = "#c0c0c0"
       }
       // Push event name and reformatted data objects to series
       series.push({ name: seriesNames[i], data: dataPoints, xAxis: 0, yAxis: 0, color: eventColor })
@@ -171,6 +190,7 @@ function renderChart(series, drilldown) {
       align: 'center',
       verticalAlign: 'bottom',
       layout: 'horizontal',
+      reversed: true,
       labelFormatter: function () {
         var category = this.name.charAt(0).toUpperCase() + this.name.slice(1)
         return category
@@ -188,9 +208,10 @@ function renderChart(series, drilldown) {
     {
       type: 'datetime',
       labels: {
-        format: '{value:%b/%e/%Y}',
+        format: '{value:%b %e, %Y}',
         rotation: -45
       },
+      minPadding: 0.1
     }],
     // Y Axis drilled up
     yAxis: [{
@@ -213,7 +234,11 @@ function renderChart(series, drilldown) {
         dataLabels: {
           enabled: false,
         },
-      }
+      },
+      // series: {
+      //   borderColor: '#c0c0c0',
+      //   borderWidth: 2
+      // }
     },
     series: series,
     drilldown: {
