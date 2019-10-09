@@ -13,18 +13,6 @@
 //      data is an array of arrays
 //        [day, # of events]
 
-// Combine month+&+year
-// Combine eventType+&+Headline+&+Text
-// Combine month+&+year+&+eventType+Headline+Text
-// If cell 11 contains YellowGreen, push to Intercept; else if call 11 contains IndianRed, push to strike; else push to other
-//    {"name": eventType, "data": eventArray[eventType]}
-//    name: monthYear; drilldown: monthYear+&+series name; y: +=1
-// Push Intercept, Strike and Other objects to series array
-// If cell 11 contains YellowGreen, push to Intercept; else if call 11 contains IndianRed, push to strike; else push to other
-//    name: Strike, Intercept, Other; id: monthYear+&+series name;
-
-
-
 var drilldownSeries = []
 // Create empty array to push new event objects into
 var series = []
@@ -59,14 +47,12 @@ Highcharts.data({
       }
       // Remove links from the text that will appear in the tooltip
       var eventText = row[10].substr(0, row[10].indexOf('<a '))
-      // Get date as year month 01 for this row
+      // Get series date as year month 01 for this row
       var seriesDate = new Date(row[0], row[1] - 1, '01').getTime()
-
-      // Get date as year month day for this row
+      // Get drilldown date as year month day for this row
       var drilldownDate = new Date(row[0], row[1] - 1, row[2]).getTime()
-      // Get the drilldown values for this row
+      // Get the drilldown value for this row
       var drilldownRow = row[1] + '*' + row[0] + '*' + eventRow
-      // var drilldownPointName = eventRow.toUpperCase() + " " + row[9] + " " + row[10]
       // If this event doesn't have this drilldown, create it
       if (!dataObject[eventRow][drilldownRow]) {
         dataObject[eventRow][drilldownRow] = {
@@ -101,15 +87,16 @@ Highcharts.data({
     // Correct formatting
     // Create array of event types
     var seriesNames = Object.keys(dataObject)
-    console.log(seriesNames)
     // Create arrays of the data for each event
     dataArray = Object.values(dataObject)
     for (var i = 0; i < dataArray.length; i++) {
       // Remove extra object level
       var dataPoints = Object.values(dataArray[i])
+      // Get series color based on event type
       var eventColor = ""
       if (seriesNames[i] == "intercept") {
         eventColor = "#9acd32"
+        // Use this for icon pattern fill
         // eventColor = {
         //   pattern: {
         //     image: "../intercept.png",
@@ -122,6 +109,7 @@ Highcharts.data({
       }
       else if (seriesNames[i] == "strike") {
         eventColor = "#954950"
+        // Use this for icon pattern fill
         // eventColor = {
         //   pattern: {
         //     image: "../STRIKE.png",
@@ -133,16 +121,13 @@ Highcharts.data({
         // }
       }
       else {
-        eventColor = "#c0c0c0"
+        eventColor = "#BEBDC0"
       }
       // Push event name and reformatted data objects to series
       series.push({ name: seriesNames[i], data: dataPoints, xAxis: 0, yAxis: 0, color: eventColor })
     }
     // Remove extra object level
     drilldown = Object.values(drilldownObject)
-
-    console.log(drilldown)
-    console.log(series)
 
     renderChart(series, drilldown)
   }
@@ -161,9 +146,11 @@ function renderChart(series, drilldown) {
     chart: {
       type: 'column',
       events: {
+        // On drilldown remove yAxis title
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
         },
+        // On drillup set yAxis title
         drillup: function (e) {
           this.yAxis[0].setTitle({ text: "Monthly Activity" })
         }
@@ -200,9 +187,10 @@ function renderChart(series, drilldown) {
     xAxis: [{
       type: 'datetime',
       labels: {
-        format: '{value:%b %Y}'
+        format: '{value:%b %Y}',
+        rotation: 90
       },
-      startOnTick: true,
+      tickInterval: 24 * 28 * 3600 * 1000
     },
     // X axis drilled down
     {
@@ -235,16 +223,18 @@ function renderChart(series, drilldown) {
           enabled: false,
         },
       },
-      // series: {
-      //   borderColor: '#c0c0c0',
-      //   borderWidth: 2
-      // }
+      series: {
+        borderRadius: 2,
+      }
     },
     series: series,
     drilldown: {
       // Setting this to false makes all points in column show on drilldown
       allowPointDrilldown: false,
       series: drilldown,
+      drillUpButton: {
+        position: { align: "left", y: 290, x: 5 },
+      }
     },
     tooltip: {
       formatter: function () {
@@ -267,7 +257,7 @@ function renderChart(series, drilldown) {
         }
         // Format drilled down tooltip
         else {
-          return date + ' - ' + this.point.toolHeader + '<br />' + this.point.toolText
+          return date + ' - <b>' + this.point.toolHeader + '</b><br />' + this.point.toolText
         }
       }
     }
