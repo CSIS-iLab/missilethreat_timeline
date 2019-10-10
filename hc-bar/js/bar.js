@@ -73,7 +73,8 @@ Highcharts.data({
           "data": [],
           // "xAxis": 1,
           "yAxis": 1,
-          maxPointWidth: 35
+          pointWidth: 35,
+          pointRange: 1
         }
       }
       // Populate drilldown data
@@ -155,7 +156,6 @@ function renderChart(series, drilldown) {
           this.xAxis[0].update({
             labels: {
               format: '{value:%b %e, %Y}',
-              rotation: -45
             },
             minPadding: 0.1,
             tickInterval: 24 * 3600 * 1000,
@@ -167,10 +167,9 @@ function renderChart(series, drilldown) {
           this.xAxis[0].update({
             labels: {
               format: '{value:%b %Y}',
-              rotation: 90
             },
             minPadding: 0,
-            tickInterval: 24 * 28 * 3600 * 1000,
+            tickInterval: 28 * 24 * 3600 * 1000,
           })
         }
       }
@@ -206,6 +205,10 @@ function renderChart(series, drilldown) {
     xAxis: [{
       type: 'datetime',
       tickInterval: 24 * 28 * 3600 * 1000,
+      labels: {
+        format: '{value:%b %Y}',
+        rotation: 90
+      }
     }],
     // Y Axis drilled up
     yAxis: [{
