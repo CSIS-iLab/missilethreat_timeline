@@ -155,7 +155,8 @@ function renderChart(series, drilldown) {
               format: '{value:%b %e, %Y}',
               rotation: -45
             },
-            minPadding: 0.1
+            minPadding: 0.1,
+            tickInterval: 24 * 3600 * 1000,
           })
         },
         // On drillup set yAxis title
@@ -166,6 +167,7 @@ function renderChart(series, drilldown) {
               format: '{value:%b %Y}',
               rotation: 90
             },
+            minPadding: 0,
             tickInterval: 24 * 28 * 3600 * 1000,
           })
         }
@@ -198,23 +200,10 @@ function renderChart(series, drilldown) {
         return category
       }
     },
-    // X axis drilled up
+    // X axis default
     xAxis: [{
       type: 'datetime',
-      // labels: {
-      //   format: '{value:%b %Y}',
-      //   rotation: 90
-      // },
-      // tickInterval: 24 * 28 * 3600 * 1000,
-      // },
-      // // X axis drilled down
-      // {
-      //   type: 'datetime',
-      //   labels: {
-      //     format: '{value:%b %e, %Y}',
-      //     rotation: -45
-      //   },
-      //   minPadding: 0.1
+      tickInterval: 24 * 28 * 3600 * 1000,
     }],
     // Y Axis drilled up
     yAxis: [{
