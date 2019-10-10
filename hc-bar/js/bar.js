@@ -61,7 +61,6 @@ Highcharts.data({
           "name": seriesDate,
           "x": seriesDate,
         }
-        console.log(dataObject)
       }
       // Increase value of y for every instance of the drilldown within the event object
       dataObject[eventRow][drilldownRow].y += 1
@@ -129,7 +128,7 @@ Highcharts.data({
     }
     // Remove extra object level
     drilldown = Object.values(drilldownObject)
-
+    console.log(drilldown)
     renderChart(series, drilldown)
   }
 })
@@ -141,6 +140,9 @@ function renderChart(series, drilldown) {
     lang: {
       drillUpText: "◁ Back to Main"
     },
+    global: {
+      useUTC: false
+    }
   })
   Highcharts.chart('hcContainer', {
     // General Chart Options
