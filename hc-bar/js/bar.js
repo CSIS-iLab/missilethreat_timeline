@@ -246,6 +246,7 @@ function renderChart(series, drilldown) {
       }
     },
     tooltip: {
+      useHTML: true,
       formatter: function () {
         // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x)
@@ -266,7 +267,7 @@ function renderChart(series, drilldown) {
         }
         // Format drilled down tooltip
         else {
-          return date + ' - <b>' + this.point.toolHeader + '</b><br />' + this.point.toolText
+          return date + ' - <b>' + this.point.toolHeader + '</b><br/>' + this.point.toolText
         }
       }
     }
