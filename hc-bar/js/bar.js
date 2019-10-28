@@ -136,6 +136,9 @@ Highcharts.data({
 
 function renderChart(series, drilldown) {
 
+  // Remove link in x axis titles
+  Highcharts.Tick.prototype.drillable = function () { }
+
   // format drillup button
   Highcharts.setOptions({
     lang: {
@@ -176,10 +179,10 @@ function renderChart(series, drilldown) {
     },
     // Chart Title and Subtitle
     title: {
-      text: "Interactive Timeline"
+      text: "The Missile War in Yemen"
     },
     subtitle: {
-      text: "Click on a bar to see individual events in that month"
+      text: "Interactive Timeline.<br/>Click on a bar to see individual events in a month."
     },
     // Credits
     credits: {
@@ -214,7 +217,7 @@ function renderChart(series, drilldown) {
     yAxis: [{
       // Set default title
       title: {
-        text: "Monthly Activity"
+        text: "Reported Incidents"
       },
     },
     // Y axis drilled down
