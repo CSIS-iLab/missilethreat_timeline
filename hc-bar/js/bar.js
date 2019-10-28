@@ -46,7 +46,8 @@ Highcharts.data({
         eventRow = 'other'
       }
       // Remove links from the text that will appear in the tooltip
-      var eventText = row[10].substr(0, row[10].indexOf('<a '))
+      // var eventText = row[10].substr(0, row[10].indexOf('<a '))
+      var eventText = row[10]
       // Get series date as year month 01 for this row
       var seriesDate = new Date(row[0], row[1] - 1, '01').getTime()
       // Get drilldown date as year month day for this row
@@ -182,7 +183,7 @@ function renderChart(series, drilldown) {
       text: "The Missile War in Yemen"
     },
     subtitle: {
-      text: "Interactive Timeline.<br/>Click on a bar to see individual events in a month."
+      text: "Interactive Timeline<br/>Click on a bar to see individual events in a month"
     },
     // Credits
     credits: {
@@ -192,9 +193,6 @@ function renderChart(series, drilldown) {
     },
     // Chart Legend
     legend: {
-      title: {
-        text: '<span style="font-size: 12px; color: #808080; font-weight: normal">(Click to hide)</span>'
-      },
       align: 'center',
       verticalAlign: 'bottom',
       layout: 'horizontal',
@@ -202,6 +200,9 @@ function renderChart(series, drilldown) {
       labelFormatter: function () {
         var category = this.name.charAt(0).toUpperCase() + this.name.slice(1)
         return category
+      },
+      itemStyle: {
+        'cursor': 'default'
       }
     },
     // X axis default
@@ -234,6 +235,11 @@ function renderChart(series, drilldown) {
         dataLabels: {
           enabled: false,
         },
+        events: {
+          legendItemClick: function () {
+            return false; // <== returning false will cancel the default action
+          }
+        },
       },
       series: {
         borderRadius: 2,
@@ -250,6 +256,10 @@ function renderChart(series, drilldown) {
     },
     tooltip: {
       useHTML: true,
+      hideDelay: 1500,
+      style: {
+        pointerEvents: 'auto'
+      },
       formatter: function () {
         // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x)
