@@ -46,8 +46,8 @@ Highcharts.data({
         eventRow = 'other'
       }
       // Remove links from the text that will appear in the tooltip
-      // var eventText = row[10].substr(0, row[10].indexOf('<a '))
-      var eventText = row[10]
+      var eventText = row[10].substr(0, row[10].indexOf('<a '))
+      // var eventText = row[10]
       // Get series date as year month 01 for this row
       var seriesDate = new Date(row[0], row[1] - 1, '01').getTime()
       // Get drilldown date as year month day for this row
@@ -167,7 +167,7 @@ function renderChart(series, drilldown) {
         },
         // On drillup set yAxis title
         drillup: function (e) {
-          this.yAxis[0].setTitle({ text: "Monthly Activity" })
+          this.yAxis[0].setTitle({ text: "Reported Incidents" })
           this.xAxis[0].update({
             labels: {
               format: '{value:%b %Y}',
@@ -247,7 +247,7 @@ function renderChart(series, drilldown) {
     },
     series: series,
     drilldown: {
-      // Setting this to false makes all points in column show on drilldown
+      // Setting this to false makes all points for all series in column show on drilldown
       allowPointDrilldown: false,
       series: drilldown,
       drillUpButton: {
@@ -256,10 +256,10 @@ function renderChart(series, drilldown) {
     },
     tooltip: {
       useHTML: true,
-      hideDelay: 1500,
-      style: {
-        pointerEvents: 'auto'
-      },
+      // hideDelay: 1500,
+      // style: {
+      //   pointerEvents: 'auto'
+      // },
       formatter: function () {
         // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x)
