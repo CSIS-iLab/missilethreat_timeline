@@ -130,7 +130,6 @@ Highcharts.data({
     }
     // Remove extra object level
     drilldown = Object.values(drilldownObject)
-    console.log(drilldown)
     renderChart(series, drilldown)
   }
 })
@@ -237,7 +236,7 @@ function renderChart(series, drilldown) {
         },
         events: {
           legendItemClick: function () {
-            return false; // <== returning false will cancel the default action
+            return false; // cancel the default hide series action
           }
         },
       },
@@ -251,7 +250,7 @@ function renderChart(series, drilldown) {
       allowPointDrilldown: false,
       series: drilldown,
       drillUpButton: {
-        position: { align: "left", y: 290, x: 5 },
+        position: { align: "left", y: -60, x: 5 },
       }
     },
     tooltip: {
