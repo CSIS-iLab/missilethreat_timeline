@@ -207,7 +207,7 @@ function renderChart(series, drilldown) {
     // X axis default
     xAxis: [{
       type: 'datetime',
-      tickInterval: 24 * 28 * 3600 * 1000,
+      // tickInterval: 24 * 28 * 3600 * 1000,
       labels: {
         format: '{value:%b %Y}',
         rotation: 90
