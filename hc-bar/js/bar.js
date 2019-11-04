@@ -172,7 +172,7 @@ function renderChart(series, drilldown) {
               format: '{value:%b %Y}',
             },
             minPadding: 0,
-            tickInterval: 28 * 24 * 3600 * 1000,
+            tickInterval: 140 * 24 * 3600 * 1000,
           })
         }
       }
