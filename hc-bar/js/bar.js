@@ -74,7 +74,7 @@ Highcharts.data({
           "data": [],
           // "xAxis": 1,
           "yAxis": 1,
-          pointWidth: 35,
+          pointWidth: 20,
           pointRange: 1
         }
       }
@@ -157,17 +157,16 @@ function renderChart(series, drilldown) {
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
           const date = new Date(e.category)
-          var firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
-          var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+          let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
+          let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
           this.xAxis[0].update({
             labels: {
               format: '{value:%b %e, %Y}',
             },
-            minPadding: 0.1,
-            tickInterval: 24 * 3600 * 1000,
-            endOnTick: true,
-            min: firstDay.getTime(),
+            tickInterval: 48 * 3600 * 1000,
+            softMin: firstDay.getTime(),
             softMax: lastDay.getTime(),
+            minPadding: 0.02,
           })
         },
         // On drillup set yAxis title
@@ -177,7 +176,6 @@ function renderChart(series, drilldown) {
             labels: {
               format: '{value:%b %Y}',
             },
-            minPadding: 0,
             tickInterval: 140 * 24 * 3600 * 1000,
             max: null,
             min: null,
@@ -215,7 +213,7 @@ function renderChart(series, drilldown) {
     // X axis default
     xAxis: [{
       type: 'datetime',
-      // tickInterval: 24 * 28 * 3600 * 1000,
+      tickInterval: 140 * 24 * 3600 * 1000,
       labels: {
         format: '{value:%b %Y}',
         rotation: 90
@@ -250,7 +248,7 @@ function renderChart(series, drilldown) {
       },
       series: {
         borderRadius: 2,
-      }
+      },
     },
     series: series,
     drilldown: {
@@ -283,7 +281,7 @@ function renderChart(series, drilldown) {
           // Isolate and capitalize the event category
           var category = categorySplit[2].charAt(0).toUpperCase() + categorySplit[2].slice(1)
           // Display Month/Year, Category and y value
-          return monthYear + '<br />' + category + ': ' + this.y
+          return '<b>' + monthYear + '</b >' + ' ' + category + ': ' + this.y
         }
         // Format drilled down tooltip
         else {
