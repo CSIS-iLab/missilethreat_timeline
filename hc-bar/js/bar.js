@@ -156,12 +156,18 @@ function renderChart(series, drilldown) {
         // On drilldown remove yAxis title
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
+          const date = new Date(e.category)
+          var firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
+          var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
           this.xAxis[0].update({
             labels: {
               format: '{value:%b %e, %Y}',
             },
             minPadding: 0.1,
             tickInterval: 24 * 3600 * 1000,
+            endOnTick: true,
+            min: firstDay.getTime(),
+            softMax: lastDay.getTime(),
           })
         },
         // On drillup set yAxis title
@@ -173,6 +179,8 @@ function renderChart(series, drilldown) {
             },
             minPadding: 0,
             tickInterval: 140 * 24 * 3600 * 1000,
+            max: null,
+            min: null,
           })
         }
       }
