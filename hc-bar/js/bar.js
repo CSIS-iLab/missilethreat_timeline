@@ -30,7 +30,7 @@ Highcharts.data({
     var drilldownObject = {};
     var event = "";
 
-    columns.forEach(function(row, index) {
+    columns.forEach(function (row, index) {
       // Skip first row
       if (index == 0) {
         return;
@@ -140,7 +140,7 @@ Highcharts.data({
 
 function renderChart(series, drilldown) {
   // Remove link in x axis titles
-  Highcharts.Tick.prototype.drillable = function() {};
+  Highcharts.Tick.prototype.drillable = function () { };
 
   // format drillup button
   Highcharts.setOptions({
@@ -157,7 +157,7 @@ function renderChart(series, drilldown) {
       type: "column",
       events: {
         // On drilldown remove yAxis title
-        drilldown: function(e) {
+        drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined });
           const date = new Date(e.category);
           let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -165,13 +165,12 @@ function renderChart(series, drilldown) {
           this.xAxis[0].update({
             labels: {
               format: "{value:%b %e, %Y}"
-              // step: 2
             },
-            // tickInterval: 24 * 3600 * 1000,
             softMin: firstDay.getTime(),
             softMax: lastDay.getTime(),
-            // minPadding: 0.02
-            tickPositioner: function() {
+            minPadding: 0.02,
+            maxPadding: 0.02,
+            tickPositioner: function () {
               let positions = [];
               let start = firstDay.getTime();
               let end = lastDay.getTime();
@@ -183,16 +182,33 @@ function renderChart(series, drilldown) {
 
               return positions;
             }
-          });
+          })
         },
         // On drillup set yAxis title
-        drillup: function(e) {
+        drillup: function (e) {
           this.yAxis[0].setTitle({ text: "Reported Incidents" });
+          const firstDate = new Date(e.target.xAxis[0].dataMin);
+          const lastDate = new Date(e.target.xAxis[0].dataMax);
+          let firstDay = new Date(firstDate.getFullYear(), firstDate.getMonth(), 1);
+          let lastDay = new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 0);
+          console.log(e.target.xAxis[0].dataMin)
           this.xAxis[0].update({
             labels: {
               format: "{value:%b %Y}"
             },
-            tickInterval: 140 * 24 * 3600 * 1000
+            // tickInterval: 140 * 24 * 3600 * 1000,
+            tickPositioner: function () {
+              let positions = [];
+              let start = firstDay.getTime();
+              let end = lastDay.getTime();
+
+              while (start <= end) {
+                positions.push(start);
+                start += 140 * 24 * 3600 * 1000;
+              }
+
+              return positions;
+            }
           });
         }
       }
@@ -217,7 +233,7 @@ function renderChart(series, drilldown) {
       verticalAlign: "bottom",
       layout: "horizontal",
       reversed: true,
-      labelFormatter: function() {
+      labelFormatter: function () {
         var category = this.name.charAt(0).toUpperCase() + this.name.slice(1);
         return category;
       },
@@ -233,6 +249,18 @@ function renderChart(series, drilldown) {
         labels: {
           format: "{value:%b %Y}",
           rotation: 90
+        },
+        tickPositioner: function () {
+          let positions = []
+          let start = this.dataMin
+          let end = this.dataMax
+
+          while (start <= end) {
+            positions.push(start)
+            start += 140 * 24 * 3600 * 1000
+          }
+
+          return positions
         }
       }
     ],
@@ -259,7 +287,7 @@ function renderChart(series, drilldown) {
           enabled: false
         },
         events: {
-          legendItemClick: function() {
+          legendItemClick: function () {
             return false; // cancel the default hide series action
           }
         }
@@ -283,7 +311,7 @@ function renderChart(series, drilldown) {
       // style: {
       //   pointerEvents: 'auto'
       // },
-      formatter: function() {
+      formatter: function () {
         // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x);
         // Remove time portion of date
