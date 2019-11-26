@@ -13,91 +13,91 @@
 //      data is an array of arrays
 //        [day, # of events]
 
-var drilldownSeries = []
+var drilldownSeries = [];
 // Create empty array to push new event objects into
-var series = []
+var series = [];
 
 Highcharts.data({
   // Load Data in from Google Sheets
-  googleSpreadsheetKey: '1AKM59m3iaOSSQgVsIoDcSWxjcpX781JIuBwB9YdDgFs',
+  googleSpreadsheetKey: "1AKM59m3iaOSSQgVsIoDcSWxjcpX781JIuBwB9YdDgFs",
   googleSpreadsheetWorksheet: 1,
   switchRowsAndColumns: true,
   parsed: function parsed(columns) {
     // set default values
-    var drilldown = ""
-    var dataObject = { "other": {}, "strike": {}, "intercept": {} }
-    var dataArray = []
-    var drilldownObject = {}
-    var event = ""
+    var drilldown = "";
+    var dataObject = { other: {}, strike: {}, intercept: {} };
+    var dataArray = [];
+    var drilldownObject = {};
+    var event = "";
 
-    columns.forEach(function (row, index) {
+    columns.forEach(function(row, index) {
       // Skip first row
       if (index == 0) {
-        return
+        return;
       }
       // Get event value for this row
-      var interceptColored = row[10].toLowerCase().indexOf("yellowgreen") > -1
+      var interceptColored = row[10].toLowerCase().indexOf("yellowgreen") > -1;
       var strikeColored = row[10].toLowerCase().indexOf("indianred") > -1;
       if (interceptColored) {
-        eventRow = 'intercept'
+        eventRow = "intercept";
       } else if (strikeColored) {
-        eventRow = 'strike'
+        eventRow = "strike";
       } else {
-        eventRow = 'other'
+        eventRow = "other";
       }
       // Remove links from the text that will appear in the tooltip
-      var eventText = row[10].substr(0, row[10].indexOf('<a '))
+      var eventText = row[10].substr(0, row[10].indexOf("<a "));
       // var eventText = row[10]
       // Get series date as year month 01 for this row
-      var seriesDate = new Date(row[0], row[1] - 1, '01').getTime()
+      var seriesDate = new Date(row[0], row[1] - 1, "01").getTime();
       // Get drilldown date as year month day for this row
-      var drilldownDate = new Date(row[0], row[1] - 1, row[2]).getTime()
+      var drilldownDate = new Date(row[0], row[1] - 1, row[2]).getTime();
       // Get the drilldown value for this row
-      var drilldownRow = row[1] + '*' + row[0] + '*' + eventRow
+      var drilldownRow = row[1] + "*" + row[0] + "*" + eventRow;
       // If this event doesn't have this drilldown, create it
       if (!dataObject[eventRow][drilldownRow]) {
         dataObject[eventRow][drilldownRow] = {
-          "y": 0,
-          "drilldown": drilldownRow,
-          "name": seriesDate,
-          "x": seriesDate,
-        }
+          y: 0,
+          drilldown: drilldownRow,
+          name: seriesDate,
+          x: seriesDate
+        };
       }
       // Increase value of y for every instance of the drilldown within the event object
-      dataObject[eventRow][drilldownRow].y += 1
+      dataObject[eventRow][drilldownRow].y += 1;
 
       // populate drilldown series
       if (!drilldownObject[drilldownRow]) {
         drilldownObject[drilldownRow] = {
-          "name": eventRow,
-          "id": drilldownRow,
-          "data": [],
+          name: eventRow,
+          id: drilldownRow,
+          data: [],
           // "xAxis": 1,
-          "yAxis": 1,
+          yAxis: 1,
           pointWidth: 20,
           pointRange: 1
-        }
+        };
       }
       // Populate drilldown data
       drilldownObject[drilldownRow].data.push({
-        "x": drilldownDate,
-        "y": 1,
-        "toolHeader": row[9],
-        "toolText": eventText
-      })
-    })
+        x: drilldownDate,
+        y: 1,
+        toolHeader: row[9],
+        toolText: eventText
+      });
+    });
     // Correct formatting
     // Create array of event types
-    var seriesNames = Object.keys(dataObject)
+    var seriesNames = Object.keys(dataObject);
     // Create arrays of the data for each event
-    dataArray = Object.values(dataObject)
+    dataArray = Object.values(dataObject);
     for (var i = 0; i < dataArray.length; i++) {
       // Remove extra object level
-      var dataPoints = Object.values(dataArray[i])
+      var dataPoints = Object.values(dataArray[i]);
       // Get series color based on event type
-      var eventColor = ""
+      var eventColor = "";
       if (seriesNames[i] == "intercept") {
-        eventColor = "#9acd32"
+        eventColor = "#9acd32";
         // Use this for icon pattern fill
         // eventColor = {
         //   pattern: {
@@ -108,9 +108,8 @@ Highcharts.data({
         //     y: 2
         //   }
         // }
-      }
-      else if (seriesNames[i] == "strike") {
-        eventColor = "#954950"
+      } else if (seriesNames[i] == "strike") {
+        eventColor = "#954950";
         // Use this for icon pattern fill
         // eventColor = {
         //   pattern: {
@@ -121,23 +120,27 @@ Highcharts.data({
         //     y: 4
         //   }
         // }
-      }
-      else {
-        eventColor = "#BEBDC0"
+      } else {
+        eventColor = "#BEBDC0";
       }
       // Push event name and reformatted data objects to series
-      series.push({ name: seriesNames[i], data: dataPoints, xAxis: 0, yAxis: 0, color: eventColor })
+      series.push({
+        name: seriesNames[i],
+        data: dataPoints,
+        xAxis: 0,
+        yAxis: 0,
+        color: eventColor
+      });
     }
     // Remove extra object level
-    drilldown = Object.values(drilldownObject)
-    renderChart(series, drilldown)
+    drilldown = Object.values(drilldownObject);
+    renderChart(series, drilldown);
   }
-})
+});
 
 function renderChart(series, drilldown) {
-
   // Remove link in x axis titles
-  Highcharts.Tick.prototype.drillable = function () { }
+  Highcharts.Tick.prototype.drillable = function() {};
 
   // format drillup button
   Highcharts.setOptions({
@@ -147,39 +150,50 @@ function renderChart(series, drilldown) {
     global: {
       useUTC: false
     }
-  })
-  Highcharts.chart('hcContainer', {
+  });
+  Highcharts.chart("hcContainer", {
     // General Chart Options
     chart: {
-      type: 'column',
+      type: "column",
       events: {
         // On drilldown remove yAxis title
-        drilldown: function (e) {
-          this.yAxis[0].setTitle({ text: undefined })
-          const date = new Date(e.category)
-          let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
-          let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+        drilldown: function(e) {
+          this.yAxis[0].setTitle({ text: undefined });
+          const date = new Date(e.category);
+          let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+          let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
           this.xAxis[0].update({
             labels: {
-              format: '{value:%b %e, %Y}',
+              format: "{value:%b %e, %Y}"
+              // step: 2
             },
-            tickInterval: 48 * 3600 * 1000,
+            // tickInterval: 24 * 3600 * 1000,
             softMin: firstDay.getTime(),
             softMax: lastDay.getTime(),
-            minPadding: 0.02,
-          })
+            // minPadding: 0.02
+            tickPositioner: function() {
+              let positions = [];
+              let start = firstDay.getTime();
+              let end = lastDay.getTime();
+
+              while (start <= end) {
+                positions.push(start);
+                start += 24 * 3600 * 1000 * 3;
+              }
+
+              return positions;
+            }
+          });
         },
         // On drillup set yAxis title
-        drillup: function (e) {
-          this.yAxis[0].setTitle({ text: "Reported Incidents" })
+        drillup: function(e) {
+          this.yAxis[0].setTitle({ text: "Reported Incidents" });
           this.xAxis[0].update({
             labels: {
-              format: '{value:%b %Y}',
+              format: "{value:%b %Y}"
             },
-            tickInterval: 140 * 24 * 3600 * 1000,
-            max: null,
-            min: null,
-          })
+            tickInterval: 140 * 24 * 3600 * 1000
+          });
         }
       }
     },
@@ -188,7 +202,8 @@ function renderChart(series, drilldown) {
       text: "The Missile War in Yemen"
     },
     subtitle: {
-      text: "Interactive Timeline<br/>Click on a bar to see individual events in a month"
+      text:
+        "Interactive Timeline<br/>Click on a bar to see individual events in a month"
     },
     // Credits
     credits: {
@@ -198,57 +213,60 @@ function renderChart(series, drilldown) {
     },
     // Chart Legend
     legend: {
-      align: 'center',
-      verticalAlign: 'bottom',
-      layout: 'horizontal',
+      align: "center",
+      verticalAlign: "bottom",
+      layout: "horizontal",
       reversed: true,
-      labelFormatter: function () {
-        var category = this.name.charAt(0).toUpperCase() + this.name.slice(1)
-        return category
+      labelFormatter: function() {
+        var category = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+        return category;
       },
       itemStyle: {
-        'cursor': 'default'
+        cursor: "default"
       }
     },
     // X axis default
-    xAxis: [{
-      type: 'datetime',
-      tickInterval: 140 * 24 * 3600 * 1000,
-      labels: {
-        format: '{value:%b %Y}',
-        rotation: 90
+    xAxis: [
+      {
+        type: "datetime",
+        tickInterval: 140 * 24 * 3600 * 1000,
+        labels: {
+          format: "{value:%b %Y}",
+          rotation: 90
+        }
       }
-    }],
+    ],
     // Y Axis drilled up
-    yAxis: [{
-      // Set default title
-      title: {
-        text: "Reported Incidents"
+    yAxis: [
+      {
+        // Set default title
+        title: {
+          text: "Reported Incidents"
+        }
       },
-    },
-    // Y axis drilled down
-    {
-      // Removes y axis lines
-      visible: false,
-    }],
+      // Y axis drilled down
+      {
+        // Removes y axis lines
+        visible: false
+      }
+    ],
     // Additional Plot Options
-    plotOptions:
-    {
+    plotOptions: {
       column: {
         stacking: "normal", // Normal bar graph
         // stacking: "normal", // Stacked bar graph
         dataLabels: {
-          enabled: false,
+          enabled: false
         },
         events: {
-          legendItemClick: function () {
+          legendItemClick: function() {
             return false; // cancel the default hide series action
           }
-        },
+        }
       },
       series: {
-        borderRadius: 2,
-      },
+        borderRadius: 2
+      }
     },
     series: series,
     drilldown: {
@@ -256,7 +274,7 @@ function renderChart(series, drilldown) {
       allowPointDrilldown: false,
       series: drilldown,
       drillUpButton: {
-        position: { align: "left", y: -60, x: 5 },
+        position: { align: "left", y: -60, x: 5 }
       }
     },
     tooltip: {
@@ -265,29 +283,37 @@ function renderChart(series, drilldown) {
       // style: {
       //   pointerEvents: 'auto'
       // },
-      formatter: function () {
+      formatter: function() {
         // Convert unix timestamp to javascript date
-        var dateObj = new Date(this.x)
+        var dateObj = new Date(this.x);
         // Remove time portion of date
-        var date = dateObj.toDateString()
+        var date = dateObj.toDateString();
         // Convert date to array
-        var dateArray = date.split(" ")
+        var dateArray = date.split(" ");
         // Create variable showing month and year
-        var monthYear = dateArray[1] + " " + dateArray[3]
+        var monthYear = dateArray[1] + " " + dateArray[3];
         // Format drilled up tooltip
         if (this.point.drilldown) {
           // Convert drilldown name to array
-          var categorySplit = this.point.drilldown.split("*")
+          var categorySplit = this.point.drilldown.split("*");
           // Isolate and capitalize the event category
-          var category = categorySplit[2].charAt(0).toUpperCase() + categorySplit[2].slice(1)
+          var category =
+            categorySplit[2].charAt(0).toUpperCase() +
+            categorySplit[2].slice(1);
           // Display Month/Year, Category and y value
-          return '<b>' + monthYear + '</b >' + ' ' + category + ': ' + this.y
+          return "<b>" + monthYear + "</b >" + " " + category + ": " + this.y;
         }
         // Format drilled down tooltip
         else {
-          return date + ' - <b>' + this.point.toolHeader + '</b><br/>' + this.point.toolText
+          return (
+            date +
+            " - <b>" +
+            this.point.toolHeader +
+            "</b><br/>" +
+            this.point.toolText
+          );
         }
       }
     }
-  })
+  });
 }
