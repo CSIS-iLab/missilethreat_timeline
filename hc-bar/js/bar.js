@@ -140,7 +140,7 @@ Highcharts.data({
 
 function renderChart(series, drilldown) {
   // Remove link in x axis titles
-  Highcharts.Tick.prototype.drillable = function () { };
+  Highcharts.Tick.prototype.drillable = function () { }
 
   // format drillup button
   Highcharts.setOptions({
@@ -158,10 +158,10 @@ function renderChart(series, drilldown) {
       events: {
         // On drilldown remove yAxis title
         drilldown: function (e) {
-          this.yAxis[0].setTitle({ text: undefined });
-          const date = new Date(e.category);
-          let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-          let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+          this.yAxis[0].setTitle({ text: undefined })
+          const date = new Date(e.category)
+          let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
+          let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
           this.xAxis[0].update({
             labels: {
               format: "{value:%b %e, %Y}"
@@ -171,16 +171,14 @@ function renderChart(series, drilldown) {
             minPadding: 0.02,
             maxPadding: 0.02,
             tickPositioner: function () {
-              let positions = [];
-              let start = firstDay.getTime();
-              let end = lastDay.getTime();
-
+              let positions = []
+              let start = firstDay.getTime()
+              let end = lastDay.getTime()
               while (start <= end) {
-                positions.push(start);
-                start += 24 * 3600 * 1000 * 3;
+                positions.push(start)
+                start += 24 * 3600 * 1000 * 3
               }
-
-              return positions;
+              return positions
             }
           })
         },
@@ -191,7 +189,6 @@ function renderChart(series, drilldown) {
           const lastDate = new Date(e.target.xAxis[0].dataMax);
           let firstDay = new Date(firstDate.getFullYear(), firstDate.getMonth(), 1);
           let lastDay = new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 0);
-          console.log(e.target.xAxis[0].dataMin)
           this.xAxis[0].update({
             labels: {
               format: "{value:%b %Y}"
@@ -307,10 +304,6 @@ function renderChart(series, drilldown) {
     },
     tooltip: {
       useHTML: true,
-      // hideDelay: 1500,
-      // style: {
-      //   pointerEvents: 'auto'
-      // },
       formatter: function () {
         // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x);
