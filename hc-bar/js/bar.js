@@ -175,7 +175,7 @@ function renderChart(series, drilldown) {
             tickInterval: 24 * 3600 * 1000,
             title: {
               enabled: true,
-              text: date.toLocaleString(`default`, { month: `long` }) + ", " + date.getFullYear(),
+              text: date.toLocaleString(`default`, { month: `long` }) + " " + date.getFullYear(),
             }
           })
         },
