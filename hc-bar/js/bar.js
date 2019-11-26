@@ -162,23 +162,20 @@ function renderChart(series, drilldown) {
           const date = new Date(e.category)
           let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
           let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+          let monYr = new Date(date.getFullYear(), date.getMonth())
           this.xAxis[0].update({
             labels: {
-              format: "{value:%b %e, %Y}"
+              format: "{value:%e}",
+              rotation: 0,
             },
             softMin: firstDay.getTime(),
             softMax: lastDay.getTime(),
             minPadding: 0.02,
             maxPadding: 0.02,
-            tickPositioner: function () {
-              let positions = []
-              let start = firstDay.getTime()
-              let end = lastDay.getTime()
-              while (start <= end) {
-                positions.push(start)
-                start += 24 * 3600 * 1000 * 3
-              }
-              return positions
+            tickInterval: 24 * 3600 * 1000,
+            title: {
+              enabled: true,
+              text: date.toLocaleString(`default`, { month: `long` }) + ", " + date.getFullYear(),
             }
           })
         },
@@ -191,20 +188,12 @@ function renderChart(series, drilldown) {
           let lastDay = new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 0);
           this.xAxis[0].update({
             labels: {
-              format: "{value:%b %Y}"
+              format: "{value:%b %Y}",
+              rotation: 90,
             },
-            // tickInterval: 140 * 24 * 3600 * 1000,
-            tickPositioner: function () {
-              let positions = [];
-              let start = firstDay.getTime();
-              let end = lastDay.getTime();
-
-              while (start <= end) {
-                positions.push(start);
-                start += 140 * 24 * 3600 * 1000;
-              }
-
-              return positions;
+            tickInterval: 140 * 24 * 3600 * 1000,
+            title: {
+              enabled: false
             }
           });
         }
@@ -247,18 +236,6 @@ function renderChart(series, drilldown) {
           format: "{value:%b %Y}",
           rotation: 90
         },
-        tickPositioner: function () {
-          let positions = []
-          let start = this.dataMin
-          let end = this.dataMax
-
-          while (start <= end) {
-            positions.push(start)
-            start += 140 * 24 * 3600 * 1000
-          }
-
-          return positions
-        }
       }
     ],
     // Y Axis drilled up
