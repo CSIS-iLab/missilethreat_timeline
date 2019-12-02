@@ -156,7 +156,7 @@ function renderChart(series, drilldown) {
     chart: {
       type: "column",
       events: {
-        // On drilldown remove yAxis title
+        // On drilldown remove yAxis title and format x axis labels
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
           const date = new Date(e.category)
@@ -197,11 +197,26 @@ function renderChart(series, drilldown) {
             }
           });
         }
+      },
+    },
+    exporting: {
+      chartOptions: {
+        subtitle: {
+          text: ""
+        },
+        credits: {
+          enabled: true,
+          href: false,
+          text: "MissileThreat.CSIS.org"
+        }
       }
     },
     // Chart Title and Subtitle
     title: {
-      text: "The Missile War in Yemen"
+      text: "<b>The Missile War in Yemen</b>",
+      style: {
+        fontFamily: '"Open Sans", Helvetica, sans-serif;'
+      }
     },
     subtitle: {
       text:
