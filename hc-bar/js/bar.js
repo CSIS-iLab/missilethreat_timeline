@@ -215,15 +215,13 @@ function renderChart(series, drilldown) {
       text: "<b>The Missile War in Yemen</b>",
       style: {
         fontFamily: '"Open Sans Pro", Helvetica, sans-serif;',
-        fontSize: 24,
+        fontSize: 30,
       },
-      align: top,
     },
     subtitle: {
       text:
         'Interactive Timeline<br/>Click on a bar to see individual events in a month<br/><a href="https://docs.google.com/spreadsheets/d/1ZY_g-shtct4IJZQFiFdIp-DZ7WXAL4IssWmMaKZRsb4/edit?usp=sharing" className="dataLink">Download data in spreadsheet</a>',
       useHTML: true,
-      align: top,
     },
     // Credits
     credits: {

@@ -9,6 +9,14 @@
     text-decoration: solid;
 }
 
-/* .highcharts-subtitle {
+.highcharts-subtitle {
     text-align: center;
-} */
+}
+
+.mtLogo {
+    position: absolute;
+    bottom: 30px;
+    width: 275px;
+    z-index: 1;
+    margin-left: 20px;
+}
