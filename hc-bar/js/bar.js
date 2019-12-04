@@ -299,6 +299,7 @@ function renderChart(series, drilldown) {
     },
     tooltip: {
       useHTML: true,
+      outside: true,
       formatter: function () {
         // Convert unix timestamp to javascript date
         var dateObj = new Date(this.x);
