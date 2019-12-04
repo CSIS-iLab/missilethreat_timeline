@@ -31,8 +31,8 @@ Highcharts.data({
     var event = "";
 
     columns.forEach(function (row, index) {
-      // Skip first row
-      if (index == 0) {
+      // Skip header row and title row
+      if (index == 0 || index == 1) {
         return;
       }
       // Get event value for this row
@@ -162,7 +162,6 @@ function renderChart(series, drilldown) {
           const date = new Date(e.category)
           let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
           let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
-          let monYr = new Date(date.getFullYear(), date.getMonth())
           this.xAxis[0].update({
             labels: {
               format: "{value:%e}",
@@ -215,13 +214,16 @@ function renderChart(series, drilldown) {
     title: {
       text: "<b>The Missile War in Yemen</b>",
       style: {
-        fontFamily: '"Open Sans", Helvetica, sans-serif;'
-      }
+        fontFamily: '"Open Sans Pro", Helvetica, sans-serif;',
+        fontSize: 24,
+      },
+      align: top,
     },
     subtitle: {
       text:
         'Interactive Timeline<br/>Click on a bar to see individual events in a month<br/><a href="https://docs.google.com/spreadsheets/d/1ZY_g-shtct4IJZQFiFdIp-DZ7WXAL4IssWmMaKZRsb4/edit?usp=sharing" className="dataLink">Download data in spreadsheet</a>',
-      useHTML: true
+      useHTML: true,
+      align: top,
     },
     // Credits
     credits: {
@@ -292,7 +294,7 @@ function renderChart(series, drilldown) {
       allowPointDrilldown: false,
       series: drilldown,
       drillUpButton: {
-        position: { align: "left", y: -60, x: 5 }
+        position: { align: "right", y: -60, x: 5 }
       }
     },
     tooltip: {
