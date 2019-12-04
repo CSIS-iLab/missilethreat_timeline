@@ -149,7 +149,7 @@ function renderChart(series, drilldown) {
     },
     global: {
       useUTC: false
-    }
+    },
   });
   Highcharts.chart("hcContainer", {
     // General Chart Options
@@ -329,6 +329,12 @@ function renderChart(series, drilldown) {
           );
         }
       }
+    },
+  },
+    function (chart) {
+      let image = chart.renderer.image('./MissileDefense.png', 200, 100, 175, 75)
+      image.add()
     }
-  });
+  )
 }
+
