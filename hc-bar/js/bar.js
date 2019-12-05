@@ -191,7 +191,7 @@ function renderChart(series, drilldown) {
         },
         // On drillup set yAxis title
         drillup: function (e) {
-          // this.yAxis[0].setTitle({ text: "Reported Incidents" })
+          this.yAxis[0].setTitle({ text: "Reported Incidents" })
           this.xAxis[0].update({
             labels: {
               format: "{value:%b %Y}",
