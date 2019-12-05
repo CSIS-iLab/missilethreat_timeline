@@ -169,7 +169,6 @@ function renderChart(series, drilldown) {
         },
         // On drilldown remove yAxis title and format x axis labels
         drilldown: function (e) {
-          console.log("drilldown")
           this.yAxis[0].setTitle({ text: undefined })
           const date = new Date(e.category)
           let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
@@ -192,7 +191,6 @@ function renderChart(series, drilldown) {
         },
         // On drillup set yAxis title
         drillup: function (e) {
-          console.log(e)
           this.yAxis[0].setTitle({ text: "Reported Incidents" })
           this.xAxis[0].update({
             labels: {
@@ -213,11 +211,6 @@ function renderChart(series, drilldown) {
           text: ""
         },
         sourceWidth: 1000,
-        // credits: {
-        //   enabled: true,
-        //   href: false,
-        //   text: "MissileThreat.CSIS.org"
-        // }
       },
     },
     // Chart Title and Subtitle
