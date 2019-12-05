@@ -13,3 +13,21 @@
     text-align: center;
 }
 
+svg image {
+    display: none;
+}
+@media print {
+    svg image {
+        display: inherit;
+    }
+}
+
+.mtLogo {
+    position: absolute;
+    width: 300px;
+    right: 40px;
+}
+
+#hcContainer {
+    position: relative;
+}

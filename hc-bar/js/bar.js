@@ -160,7 +160,7 @@ function renderChart(series, drilldown) {
           let top = this.plotTop + this.plotHeight + 92.5,
             left = this.plotLeft + this.plotWidth - 150
           image = this.renderer.image('https://deploy-preview-15--missile-threat.netlify.com/hc-bar/MissileDefense.png', left, top, 150, 15)
-          image.css({ position: 'relative' }).add()
+          image.add()
         },
         redraw: function () {
           let top = this.plotTop + this.plotHeight + 92.5,
@@ -169,7 +169,8 @@ function renderChart(series, drilldown) {
         },
         // On drilldown remove yAxis title and format x axis labels
         drilldown: function (e) {
-          this.yAxis[0].setTitle({ text: undefined })
+          console.log("drilldown")
+          this.yAxis[0].setTitle({ text: "hi" })
           const date = new Date(e.category)
           let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
           let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
@@ -191,6 +192,7 @@ function renderChart(series, drilldown) {
         },
         // On drillup set yAxis title
         drillup: function (e) {
+          console.log(e)
           this.yAxis[0].setTitle({ text: "Reported Incidents" })
           this.xAxis[0].update({
             labels: {
