@@ -170,7 +170,7 @@ function renderChart(series, drilldown) {
         // On drilldown remove yAxis title and format x axis labels
         drilldown: function (e) {
           console.log("drilldown")
-          this.yAxis[0].setTitle({ text: "hi" })
+          this.yAxis[0].setTitle({ text: undefined })
           const date = new Date(e.category)
           let firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
           let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)

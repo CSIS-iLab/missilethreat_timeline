@@ -13,6 +13,12 @@
     text-align: center;
 }
 
+@media print {
+    .highcharts-subtitle {
+        display: none;
+    }
+}
+
 svg image {
     display: none;
 }
