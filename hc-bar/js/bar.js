@@ -203,11 +203,11 @@ function renderChart(series, drilldown) {
         subtitle: {
           text: ""
         },
-        credits: {
-          enabled: true,
-          href: false,
-          text: "MissileThreat.CSIS.org"
-        }
+        // credits: {
+        //   enabled: true,
+        //   href: false,
+        //   text: "MissileThreat.CSIS.org"
+        // }
       }
     },
     // Chart Title and Subtitle
@@ -225,7 +225,7 @@ function renderChart(series, drilldown) {
     },
     // Credits
     credits: {
-      enabled: true,
+      enabled: false,
       href: false,
       text: "CSIS Missile Threat"
     },
@@ -332,7 +332,9 @@ function renderChart(series, drilldown) {
     },
   },
     function (chart) {
-      let image = chart.renderer.image('./MissileDefense.png', 200, 100, 175, 75)
+      let top = chart.plotTop + chart.plotHeight + 85,
+        left = chart.plotLeft + chart.plotWidth - 345;
+      let image = chart.renderer.image('./MissileDefense.png', left, top, 340, 30)
       image.add()
     }
   )
