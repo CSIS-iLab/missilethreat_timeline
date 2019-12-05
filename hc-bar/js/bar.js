@@ -156,6 +156,17 @@ function renderChart(series, drilldown) {
     chart: {
       type: "column",
       events: {
+        load: function () {
+          let top = this.plotTop + this.plotHeight + 92.5,
+            left = this.plotLeft + this.plotWidth - 150
+          image = this.renderer.image('https://deploy-preview-15--missile-threat.netlify.com/hc-bar/MissileDefense.png', left, top, 150, 15)
+          image.css({ position: 'relative' }).add()
+        },
+        redraw: function () {
+          let top = this.plotTop + this.plotHeight + 92.5,
+            left = this.plotLeft + this.plotWidth - 150
+          image.attr({ x: left, y: top })
+        },
         // On drilldown remove yAxis title and format x axis labels
         drilldown: function (e) {
           this.yAxis[0].setTitle({ text: undefined })
@@ -180,11 +191,7 @@ function renderChart(series, drilldown) {
         },
         // On drillup set yAxis title
         drillup: function (e) {
-          this.yAxis[0].setTitle({ text: "Reported Incidents" });
-          const firstDate = new Date(e.target.xAxis[0].dataMin);
-          const lastDate = new Date(e.target.xAxis[0].dataMax);
-          let firstDay = new Date(firstDate.getFullYear(), firstDate.getMonth(), 1);
-          let lastDay = new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 0);
+          // this.yAxis[0].setTitle({ text: "Reported Incidents" })
           this.xAxis[0].update({
             labels: {
               format: "{value:%b %Y}",
@@ -203,12 +210,13 @@ function renderChart(series, drilldown) {
         subtitle: {
           text: ""
         },
+        sourceWidth: 1000,
         // credits: {
         //   enabled: true,
         //   href: false,
         //   text: "MissileThreat.CSIS.org"
         // }
-      }
+      },
     },
     // Chart Title and Subtitle
     title: {
@@ -331,12 +339,5 @@ function renderChart(series, drilldown) {
       }
     },
   },
-    function (chart) {
-      let top = chart.plotTop + chart.plotHeight + 85,
-        left = chart.plotLeft + chart.plotWidth - 345;
-      let image = chart.renderer.image('./MissileDefense.png', left, top, 340, 30)
-      image.add()
-    }
   )
 }
-

@@ -13,12 +13,3 @@
     text-align: center;
 }
 
-#hcContainer {
-    position: relative;
-}
-
-.mtLogo {
-    position: absolute;
-    width: 275px;
-    margin-left: 20px;
-}
