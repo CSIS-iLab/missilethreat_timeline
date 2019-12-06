@@ -28,7 +28,6 @@ Highcharts.data({
     var dataObject = { other: {}, strike: {}, intercept: {} };
     var dataArray = [];
     var drilldownObject = {};
-    var event = "";
 
     columns.forEach(function (row, index) {
       // Skip header row and title row
@@ -47,7 +46,6 @@ Highcharts.data({
       }
       // Remove links from the text that will appear in the tooltip
       var eventText = row[10].substr(0, row[10].indexOf("<a "));
-      // var eventText = row[10]
       // Get series date as year month 01 for this row
       var seriesDate = new Date(row[0], row[1] - 1, "01").getTime();
       // Get drilldown date as year month day for this row
@@ -72,7 +70,6 @@ Highcharts.data({
           name: eventRow,
           id: drilldownRow,
           data: [],
-          // "xAxis": 1,
           yAxis: 1,
           pointWidth: 20,
           pointRange: 1
@@ -98,28 +95,8 @@ Highcharts.data({
       var eventColor = "";
       if (seriesNames[i] == "intercept") {
         eventColor = "#9acd32";
-        // Use this for icon pattern fill
-        // eventColor = {
-        //   pattern: {
-        //     image: "../intercept.png",
-        //     width: 20,
-        //     height: 20,
-        //     x: 1.5,
-        //     y: 2
-        //   }
-        // }
       } else if (seriesNames[i] == "strike") {
         eventColor = "#954950";
-        // Use this for icon pattern fill
-        // eventColor = {
-        //   pattern: {
-        //     image: "../STRIKE.png",
-        //     width: 15,
-        //     height: 15,
-        //     x: 1,
-        //     y: 4
-        //   }
-        // }
       } else {
         eventColor = "#BEBDC0";
       }
@@ -257,8 +234,8 @@ function renderChart(series, drilldown) {
         },
       }
     ],
-    // Y Axis drilled up
     yAxis: [
+      // Y Axis drilled up
       {
         // Set default title
         title: {
@@ -274,8 +251,7 @@ function renderChart(series, drilldown) {
     // Additional Plot Options
     plotOptions: {
       column: {
-        stacking: "normal", // Normal bar graph
-        // stacking: "normal", // Stacked bar graph
+        stacking: "normal", // Stacked bar graph
         dataLabels: {
           enabled: false
         },
