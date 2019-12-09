@@ -31,15 +31,15 @@ Highcharts.data({
 
     columns.forEach(function (row, index) {
       // Skip header row and title row
-      if (index == 0 || index == 1) {
+      if (index === 0 || index === 1) {
         return;
       }
       // Get event value for this row
-      var interceptColored = row[10].toLowerCase().indexOf("yellowgreen") > -1;
-      var strikeColored = row[10].toLowerCase().indexOf("indianred") > -1;
-      if (interceptColored) {
+      var typeIntercept = row[10].toLowerCase().indexOf("yellowgreen") > -1;
+      var typeStrike = row[10].toLowerCase().indexOf("indianred") > -1;
+      if (typeIntercept) {
         eventRow = "intercept";
-      } else if (strikeColored) {
+      } else if (typeStrike) {
         eventRow = "strike";
       } else {
         eventRow = "other";
@@ -93,9 +93,9 @@ Highcharts.data({
       var dataPoints = Object.values(dataArray[i]);
       // Get series color based on event type
       var eventColor = "";
-      if (seriesNames[i] == "intercept") {
+      if (seriesNames[i] === "intercept") {
         eventColor = "#9acd32";
-      } else if (seriesNames[i] == "strike") {
+      } else if (seriesNames[i] === "strike") {
         eventColor = "#954950";
       } else {
         eventColor = "#BEBDC0";
@@ -134,7 +134,7 @@ function renderChart(series, drilldown) {
       type: "column",
       events: {
         load: function () {
-          let top = this.plotTop + this.plotHeight + 92.5,
+          var top = this.plotTop + this.plotHeight + 92.5,
             left = this.plotLeft + this.plotWidth - 150
           image = this.renderer.image('https://missilethreat.csis.org/hc-bar/MissileDefense.png', left, top, 150, 15)
           image.add()
