@@ -136,7 +136,7 @@ function renderChart(series, drilldown) {
         load: function () {
           var top = this.plotTop + this.plotHeight + 92.5,
             left = this.plotLeft + this.plotWidth - 150
-          image = this.renderer.image('https://missilethreat.csis.org/hc-bar/MissileDefense.png', left, top, 150, 15)
+          image = this.renderer.image('https://csis-ilab.github.io/missilethreat_timeline/MissileThreat-timeline/MissileDefense.png', left, top, 150, 15)
           image.add()
         },
         redraw: function () {
