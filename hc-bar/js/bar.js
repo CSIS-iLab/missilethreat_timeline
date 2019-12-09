@@ -14,7 +14,7 @@
 //        [day, # of events]
 
 var drilldownSeries = [];
-// Create empty array to push new event objects into
+// Create empty array for new event objects
 var series = [];
 
 Highcharts.data({
