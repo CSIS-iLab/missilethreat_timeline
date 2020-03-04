@@ -200,7 +200,7 @@ function renderChart(series, drilldown) {
     },
     subtitle: {
       text:
-        'Interactive Timeline<br/>Click on a bar to see individual events in a month<br/><a href="https://docs.google.com/spreadsheets/d/1ZY_g-shtct4IJZQFiFdIp-DZ7WXAL4IssWmMaKZRsb4/edit?usp=sharing" target="_blank" className="dataLink">Download data in spreadsheet</a>',
+        'Interactive Timeline<br/>Click on a bar to see individual events in a month<br/><a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vTXt6HqoxEJa2v7yNJH1N_VAj5f6s8V91rqVngX4OAJNCnBlxOB1skJY5ChYJiGiirTrwea_PA2-w2j/pubhtml?gid=2070460294&single=true" target="_blank" className="dataLink">Download data in spreadsheet</a>',
       useHTML: true,
     },
     // Credits
