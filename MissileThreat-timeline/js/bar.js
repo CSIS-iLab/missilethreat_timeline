@@ -19,8 +19,9 @@ var series = [];
 
 Highcharts.data({
   // Load Data in from Google Sheets
+  googleAPIKey: "AIzaSyA2aZcLqlSQtVISZvXRrMvYqEf8FNGLm2E",
   googleSpreadsheetKey: "1AKM59m3iaOSSQgVsIoDcSWxjcpX781JIuBwB9YdDgFs",
-  googleSpreadsheetWorksheet: 1,
+  googleSpreadsheetRange:"one",
   switchRowsAndColumns: true,
   parsed: function parsed(columns) {
     // set default values
